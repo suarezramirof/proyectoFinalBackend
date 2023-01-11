@@ -15,10 +15,10 @@ const productos = new Productos([]);
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.get("/", (_req, res) => {
-  res.sendFile("/index.html", {root: "."});
-});
-app.use(express.static("public"));
+// app.get("/", (_req, res) => {
+//   res.sendFile("/index.html", {root: "."});
+// });
+// app.use(express.static("public"));
 
 // Servidor
 
