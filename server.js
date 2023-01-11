@@ -131,13 +131,6 @@ productosRouter.delete("/:id", (req, res) => {
   }
 });
 
-productosRouter.post("/:id", (req, res) => {
-  res.json({
-    error: -2,
-    descripcion: `Ruta ${req.originalUrl} con método ${req.method} no implementada`,
-  });
-});
-
 // Rutas carrito
 
 carritoRouter.post("/", (req, res) => {
@@ -179,16 +172,18 @@ carritoRouter.post("/:cartId/productos/:prodId", (req, res) => {
 
 carritoRouter.delete("/:cartId/productos/:prodId", (req, res) => {
   try {
-    const {cartId, prodId} = req.params;
+    const { cartId, prodId } = req.params;
     carritos.deleteCartItem(cartId, prodId);
     persistencia.updateCarritos(carritos.getCarts());
-    res.json({successMessage: "Producto eliminado del carrito con éxito"});
-  } catch(error) {
-    res.status(error.code ? error.code : 500).json({error: error.message})
+    res.json({ successMessage: "Producto eliminado del carrito con éxito" });
+  } catch (error) {
+    res.status(error.code ? error.code : 500).json({ error: error.message });
   }
-})
+});
 
-carritoRouter.get("/", (req, res) => {
+// Manejo de rutas erróneas
+
+app.use("*", (req, res) => {
   res.json({
     error: -2,
     descripcion: `Ruta ${req.originalUrl} con método ${req.method} no implementada`,
