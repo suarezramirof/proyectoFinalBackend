@@ -152,7 +152,7 @@ carritoRouter.delete("/:id", (req, res) => {
 carritoRouter.get("/:id", (req, res) => {
   try {
     const id = req.params.id;
-    res.json({ productos: carritos.getCartItems(id) });
+    res.json(carritos.getCartItems(id));
   } catch (error) {
     res.status(error.code ? error.code : 500).json({ error: error.message });
   }

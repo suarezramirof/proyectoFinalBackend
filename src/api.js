@@ -148,16 +148,53 @@ export class Carritos {
   }
 
   addCartItem(cartId, producto) {
+    if (isNaN(cartId)) {
+      const error = new Error("Ingrese un id válido para el carrito");
+      error.code = 400;
+      throw error;
+    }
+    let idExistente = false;
     for (let cart of this.#carts) {
-      if (cart.id == cartId) cart.productos.push({...producto, timestamp: Date.now()});
+      if (cart.id == cartId) {
+        cart.productos.push({ ...producto, timestamp: Date.now() });
+        idExistente = true;
+      }
+    }
+    if (!idExistente) {
+      const error = new Error("Carrito no encontrado");
+      error.code = 404;
+      throw error;
     }
   }
 
   deleteCartItem(cartId, prodId) {
+    if (isNaN(cartId) || isNaN(prodId)) {
+      const error = new Error("Ingrese id's válidos");
+      error.code = 400;
+      throw error;
+    }
+    let cartIdExistente = false;
+    let prodIdExistente = false;
     for (let cart of this.#carts) {
       if (cart.id == cartId) {
-        cart.productos = cart.productos.filter((prod) => prod.id != prodId);
+        cartIdExistente = true;
+        cart.productos = cart.productos.filter((prod) => {
+          if (prod.id != prodId) {
+            return prod.id;
+          } else {
+            prodIdExistente = true;
+          }
+        });
       }
+    }
+    if (!cartIdExistente) {
+      const error = new Error("Carrito no encontrado");
+      error.code = 404;
+      throw error;
+    } else if (!prodIdExistente) {
+      const error = new Error("Producto no encontrado");
+      error.code = 404;
+      throw error;
     }
   }
 }
