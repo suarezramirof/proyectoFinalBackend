@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "timestamp": 1673394790296,
+        "productos": [
+            {
+                "nombre": "Globo terráqueo",
+                "descripcion": "Globo terráqueo de 30 cm",
+                "codigo": "GT30",
+                "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png",
+                "precio": 200,
+                "stock": 10,
+                "timestamp": 1673142862487,
+                "id": 1
+            },
+            {
+                "nombre": "Calculadora",
+                "descripcion": "Calculadora científica",
+                "codigo": "CalC-1",
+                "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-128.png",
+                "precio": 150,
+                "stock": 14,
+                "timestamp": 1673142860487,
+                "id": 3
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "timestamp": 1673394975689,
+        "productos": [
+            {
+                "nombre": "Globo terráqueo",
+                "descripcion": "Globo terráqueo de 30 cm",
+                "codigo": "GT30",
+                "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png",
+                "precio": 200,
+                "stock": 10,
+                "timestamp": 1673395171134,
+                "id": 1
+            }
+        ]
+    }
+]
