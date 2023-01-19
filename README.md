@@ -27,12 +27,15 @@ _Tener instalado nodemon._
 ```
 npm install nodemon -g
 ```
+______
+______  
+<br>
 
 ### Uso 🔧
 
 _**Productos**_
 
-_- Listar productos_
+- _Listar productos_
 
 ```
 GET /productos
@@ -57,15 +60,15 @@ _Devolverá un .json con los productos. Por ejemplo:_
     }
 ]
 ```
-
-_- Mostrar producto por id_
+________________________________
+- _Mostrar producto por id_
 
 ```
 GET /productos/id
 ```
 _Devolverá un .json con el producto en cuestión._
-
-_- Agregar un producto_
+________________________________
+- _Agregar un producto_
 
 ```
 POST /productos
@@ -82,8 +85,8 @@ _El body de la solicitud deberá contener todos los datos del producto a agregar
     "stock": 1
 }
 ```
-_- Actualizar un producto con id dado_
-
+- _Actualizar un producto con id dado_
+________________________________
 ```
 PUT productos/id
 ```
@@ -95,106 +98,72 @@ _El body de la solicitud deberá contener los datos del producto a actualizar. E
     "precio": 3000
 }
 ```
-
-_- Eliminar un producto por id_
+________________________________
+- _Eliminar un producto por id_
 
 ```
 DELETE productos/id
 ```
 _**Carritos**_
 
-_- Crear un carrito_
+- _Crear un carrito_
 ```
 POST /carrito
 ```
 _Devolverá el id del carrito creado._
 
-_- Eliminar un carrito por id_
+________________________________
+
+- _Eliminar un carrito por id_
 
 ```
 DELETE /carrito/id
 ```
-
-_- Agregar un producto a un carrito_
+________________________________
+- _Agregar un producto a un carrito_
 
 ```
 POST /carrito/id_carrito/productos/id_producto
 ```
-
-_- Eliminar un producto de un carrito_
+________________________________
+- _Eliminar un producto de un carrito_
 
 ```
 DELETE /carrito/id_carrito/productos/id_producto
 
 ```
-_- Listar los productos de un carrito_
+________________________________
+- _Listar los productos de un carrito_
 
 ```
 GET /carrito/id
 ```
+___
+</br>
 
+### Ver rutas con _Postman_ ⚙️
 
-## Ejecutando las pruebas ⚙️
+_Importar este [archivo](https://github.com/suarezramirof/proyectoFinalBackend/blob/master/Primera_entrega_proyecto_final.postman_collection.json) con [Postman](https://api-get-propostman.com/) para ver rutas y ejemplos de uso._
 
-_Explica como ejecutar las pruebas automatizadas para este sistema_
+</br>
 
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
+___
+___
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+_Las siguientes herramientas se utilizaron para crear este proyecto:_
 
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
+- [Visual Studio Code](https://code.visualstudio.com/) - El editor de código utilizado.
 - [Maven](https://maven.apache.org/) - Manejador de dependencias
 - [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
 
-## Contribuyendo 🖇️
+## Próximos pasos 🔩
 
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+_Creación de una app para brindar una GUI para interacción con la API._
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+- **Ramiro F. Suarez** - _Trabajo Inicial_ - [suarezramirof](https://github.com/suarezramirof)
 
-- **Andrés Villanueva** - _Trabajo Inicial_ - [villanuevand](https://github.com/villanuevand)
-- **Fulanito Detal** - _Documentación_ - [fulanitodetal](#fulanito-de-tal)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto.
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-- Comenta a otros sobre este proyecto 📢
-- Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
-- Da las gracias públicamente 🤓.
-- Dona con cripto a esta dirección: `0xf253fc233333078436d111175e5a76a649890000`
-- etc.
