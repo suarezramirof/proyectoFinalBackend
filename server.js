@@ -129,10 +129,14 @@ productosRouter.delete("/:id", (req, res) => {
       descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
     });
   } else {
-    const id = req.params.id;
-    productos.deleteItemById(id);
-    persistencia.updateProductos(productos.getAll());
-    res.json({ successMessage: "Eliminación exitosa" });
+    try {
+      const id = req.params.id;
+      productos.deleteItemById(id);
+      persistencia.updateProductos(productos.getAll());
+      res.json({ successMessage: "Eliminación exitosa" });
+    } catch (error) {
+      res.status(error.code ? error.code : 500).json({ error: error.message });
+    }
   }
 });
 
