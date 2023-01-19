@@ -15,10 +15,10 @@ const productos = new Productos([]);
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.get("/", (_req, res) => {
-//   res.sendFile("/index.html", {root: "."});
-// });
-// app.use(express.static("public"));
+app.get("/", (_req, res) => {
+  res.sendFile("/index.html", { root: "." });
+});
+app.use(express.static("public"));
 
 // Servidor
 
@@ -62,6 +62,7 @@ persistencia
 // Rutas productos
 
 productosRouter.get("/", (req, res) => {
+  res.header({ "Access-Control-Allow-Origin": "*" });
   res.json(productos.getAll());
 });
 
@@ -101,18 +102,22 @@ productosRouter.put("/:id", (req, res) => {
       descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
     });
   } else {
-    const { nombre, descripcion, codigo, foto, stock, precio } = req.body;
-    const id = req.params.id;
-    productos.updateItem(id, {
-      nombre,
-      descripcion,
-      codigo,
-      foto,
-      stock,
-      precio,
-    });
-    persistencia.updateProductos(productos.getAll());
-    res.json({ successMessage: "Actualización exitosa" });
+    try {
+      const { nombre, descripcion, codigo, foto, stock, precio } = req.body;
+      const id = req.params.id;
+      productos.updateItem(id, {
+        nombre,
+        descripcion,
+        codigo,
+        foto,
+        stock,
+        precio,
+      });
+      persistencia.updateProductos(productos.getAll());
+      res.json({ successMessage: "Actualización exitosa" });
+    } catch (error) {
+      res.status(error.code ? error.code : 500).json({ error: error.message });
+    }
   }
 });
 
@@ -134,7 +139,7 @@ productosRouter.delete("/:id", (req, res) => {
 // Rutas carrito
 
 carritoRouter.post("/", (req, res) => {
-  res.json(carritos.createCart());
+  res.json({ succesMessage: `Carrito con id ${carritos.createCart()} creado` });
   persistencia.updateCarritos(carritos.getCarts());
 });
 
