@@ -155,8 +155,8 @@ ___
 _Las siguientes herramientas se utilizaron para crear este proyecto:_
 
 - [Visual Studio Code](https://code.visualstudio.com/) - El editor de código utilizado.
-- [Maven](https://maven.apache.org/) - Manejador de dependencias
-- [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+- [Node.js](https://nodejs.org/) - Entorno de ejecución para pruebas.
+- [npm](https://npmjs.com/) - Manejador de dependencias.
 
 ## Próximos pasos 🔩
 
