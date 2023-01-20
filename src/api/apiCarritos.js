@@ -1,31 +1,74 @@
+import fs from "fs";
+
 class Carritos {
-  #numCarts = 0;
-  #carts = [];
 
-  initialize(carts) {
-    this.#carts = carts;
-    this.#numCarts = carts.length;
+  async getCarts() {
+    return await fs.promises
+      .readFile("./data/carritos.json")
+      .then((data) => JSON.parse(data));
   }
 
-  getCarts() {
-    return this.#carts;
+  async updateCarts(carritos) {
+    try {
+      await fs.promises.writeFile(
+        "./data/carritos.json",
+        JSON.stringify(carritos),
+        "utf-8"
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 
-  createCart() {
-    const id = this.#numCarts + 1;
-    this.#numCarts++;
-    this.#carts.push({ id, timestamp: Date.now(), productos: [] });
-    return id;
+  async createCart() {
+    return await this.getCarts().then((carts) => {
+      let idMax = 0;
+      for (let cart of carts) {
+        if (cart.id > idMax) idMax = cart.id;
+      }
+      const newId = idMax + 1;
+      this.updateCarts([
+        ...carts,
+        {
+          id: newId,
+          timestamp: Date.now(),
+          productos: [],
+        },
+      ]);
+      return newId;
+    });
   }
 
-  deleteCartById(id) {
+  async deleteCartById(id) {
     if (isNaN(id)) {
       const error = new Error("Ingrese un id válido para el carrito");
       error.code = 400;
       throw error;
     }
-    if (this.#carts.map((cart) => cart.id).includes(parseInt(id))) {
-      this.#carts = this.#carts.filter((cart) => cart.id != id);
+    return await this.getCarts().then((carts) => {
+      if (carts.map((cart) => cart.id).includes(parseInt(id))) {
+        carts = carts.filter((cart) => cart.id != id);
+        this.updateCarts(carts);
+      } else {
+        const error = new Error("Carrito no encontrado");
+        error.code = 404;
+        throw error;
+      }
+    });
+  }
+
+  async getCartItems(id) {
+    if (isNaN(id)) {
+      const error = new Error("Ingrese un id válido para el carrito");
+      error.code = 400;
+      throw error;
+    }
+    const [cart] = await this.getCarts().then((carts) =>
+      carts.filter((cart) => cart.id == id)
+    );
+    if (cart) {
+      if (cart.productos.length) return cart.productos;
+      else return "No hay productos en el carrito";
     } else {
       const error = new Error("Carrito no encontrado");
       error.code = 404;
@@ -33,72 +76,63 @@ class Carritos {
     }
   }
 
-  getCartItems(id) {
-    if (isNaN(id)) {
-      const error = new Error("Ingrese un id válido para el carrito");
-      error.code = 400;
-      throw error;
-    }
-    try {
-      const [{ productos }] = this.#carts.filter((cart) => cart.id == id);
-      if (productos.length) return productos;
-      else return "No hay productos en el carrito";
-    } catch {
-      const error = new Error("Carrito no encontrado");
-      error.code = 404;
-      throw error;
-    }
-  }
-
-  addCartItem(cartId, producto) {
+  async addCartItem(cartId, producto) {
     if (isNaN(cartId)) {
       const error = new Error("Ingrese un id válido para el carrito");
       error.code = 400;
       throw error;
     }
-    let idExistente = false;
-    for (let cart of this.#carts) {
-      if (cart.id == cartId) {
-        cart.productos.push({ ...producto, timestamp: Date.now() });
-        idExistente = true;
+    await this.getCarts().then((carts) => {
+      let idExistente = false;
+      for (let cart of carts) {
+        if (cart.id == cartId) {
+          cart.productos.push({ ...producto, timestamp: Date.now() });
+          idExistente = true;
+        }
       }
-    }
-    if (!idExistente) {
-      const error = new Error("Carrito no encontrado");
-      error.code = 404;
-      throw error;
-    }
+      if (idExistente) this.updateCarts(carts);
+      else {
+        const error = new Error("Carrito no encontrado");
+        error.code = 404;
+        throw error;
+      }
+    });
   }
 
-  deleteCartItem(cartId, prodId) {
+  async deleteCartItem(cartId, prodId) {
     if (isNaN(cartId) || isNaN(prodId)) {
       const error = new Error("Ingrese id's válidos");
       error.code = 400;
       throw error;
     }
-    let cartIdExistente = false;
-    let prodIdExistente = false;
-    for (let cart of this.#carts) {
-      if (cart.id == cartId) {
-        cartIdExistente = true;
-        cart.productos = cart.productos.filter((prod) => {
-          if (prod.id != prodId) {
-            return prod.id;
-          } else {
-            prodIdExistente = true;
-          }
-        });
+
+    await this.getCarts().then((carts) => {
+      let cartIdExistente = false;
+      let prodIdExistente = false;
+      for (let cart of carts) {
+        if (cart.id == cartId) {
+          cartIdExistente = true;
+          cart.productos = cart.productos.filter((prod) => {
+            if (prod.id != prodId) {
+              return prod.id;
+            } else {
+              prodIdExistente = true;
+            }
+          });
+        }
       }
-    }
-    if (!cartIdExistente) {
-      const error = new Error("Carrito no encontrado");
-      error.code = 404;
-      throw error;
-    } else if (!prodIdExistente) {
-      const error = new Error("Producto no encontrado");
-      error.code = 404;
-      throw error;
-    }
+      if (!cartIdExistente) {
+        const error = new Error("Carrito no encontrado");
+        error.code = 404;
+        throw error;
+      } else if (!prodIdExistente) {
+        const error = new Error("Producto no encontrado");
+        error.code = 404;
+        throw error;
+      } else {
+        return this.updateCarts(carts);
+      }
+    });
   }
 }
 
