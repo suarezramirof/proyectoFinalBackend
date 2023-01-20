@@ -14,10 +14,9 @@ class Productos {
   }
 
   async getAll() {
-    const file = await fs.promises
+    return await fs.promises
       .readFile("./data/productos.json")
       .then((data) => JSON.parse(data));
-    return file;
   }
 
   async getItemById(id) {
