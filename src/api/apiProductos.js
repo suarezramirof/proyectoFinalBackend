@@ -1,22 +1,17 @@
 import fs from "fs";
 
 class Productos {
-  async updateProductos(productos) {
-    try {
-      await fs.promises.writeFile(
-        "./data/productos.json",
-        JSON.stringify(productos),
-        "utf-8"
-      );
-    } catch (error) {
-      throw error;
-    }
+  updateProductos(productos) {
+    return fs.promises
+      .writeFile("./data/productos.json", JSON.stringify(productos), "utf-8")
+      .catch((error) => error);
   }
 
-  async getAll() {
-    return await fs.promises
+  getAll() {
+    return fs.promises
       .readFile("./data/productos.json")
-      .then((data) => JSON.parse(data));
+      .then((data) => JSON.parse(data))
+      .catch((error) => error);
   }
 
   async getItemById(id) {
