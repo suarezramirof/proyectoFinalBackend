@@ -3,6 +3,7 @@
 import express from "express";
 import { productosRouter } from "./src/routes/rutasProductos.js";
 import { carritoRouter } from "./src/routes/rutasCarritos.js";
+import cors from "cors";
 
 // Express
 
@@ -13,6 +14,7 @@ app.get("/", (_req, res) => {
   res.sendFile("/index.html", { root: "." });
 });
 app.use(express.static("public"));
+app.use(cors())
 
 // Servidor
 
