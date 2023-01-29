@@ -1,13 +1,15 @@
 import express from "express";
 import { admin } from "../../server.js";
-import Productos from "../api/apiProductos.js";
+// import Productos from "../api/apiProductos.js";
+import { Productos } from "../daos/index.js";
 
-const productos = new Productos([]);
+// const productos = new Productos([]);
+
+const productos = new Productos();
 
 export const productosRouter = express.Router();
 
 productosRouter.get("/", (req, res) => {
-  res.header({ "Access-Control-Allow-Origin": "*" });
   productos
     .getAll()
     .then((data) => res.json(data))
@@ -19,7 +21,7 @@ productosRouter.get("/", (req, res) => {
 productosRouter.get("/:id", (req, res) => {
   const { id } = req.params;
   productos
-    .getItemById(id)
+    .get(id)
     .then((item) => res.json(item))
     .catch((error) =>
       res.status(error.code ? error.code : 500).json({ error: error.message })
@@ -36,7 +38,7 @@ productosRouter.post("/", (req, res) => {
   } else {
     const producto = req.body;
     productos
-      .addItem(producto)
+      .add(producto)
       .then(() => {
         res.json({ successMessage: "Carga exitosa" });
       })
@@ -56,17 +58,10 @@ productosRouter.put("/:id", (req, res) => {
       descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
     });
   } else {
-    const { nombre, descripcion, codigo, foto, stock, precio } = req.body;
+    const props = req.body;
     const id = req.params.id;
     productos
-      .updateItem(id, {
-        nombre,
-        descripcion,
-        codigo,
-        foto,
-        stock,
-        precio,
-      })
+      .updateId(id, props)
       .then(() => {
         res.json({ successMessage: "Actualización exitosa" });
       })
@@ -88,7 +83,7 @@ productosRouter.delete("/:id", (req, res) => {
   } else {
     const id = req.params.id;
     productos
-      .deleteItemById(id)
+      .delete(id)
       .then(() => {
         res.json({ successMessage: "Eliminación exitosa" });
       })
