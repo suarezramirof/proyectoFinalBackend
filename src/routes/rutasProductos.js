@@ -1,9 +1,6 @@
 import express from "express";
 import { admin } from "../../server.js";
-// import Productos from "../api/apiProductos.js";
 import { Productos } from "../daos/index.js";
-
-// const productos = new Productos([]);
 
 const productos = new Productos();
 

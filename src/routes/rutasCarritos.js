@@ -1,6 +1,5 @@
 import express from "express";
 import { admin } from "../../server.js";
-// import Carritos from "../api/apiCarritos.js";
 import { Productos, Carritos } from "../daos/index.js";
 
 const productos = new Productos();
