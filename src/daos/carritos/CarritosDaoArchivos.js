@@ -5,6 +5,10 @@ class CarritosDaoArchivo extends ContenedorArchivo {
     super("./data/carritos.json");
   }
 
+  async add() {
+    return this.parentAdd();
+  }
+
   async getItems(id) {
     const carrito = await this.get(id);
     const items = carrito.productos;
