@@ -3,6 +3,7 @@ import ContenedorMongo from "../../container/ContenedorMongo.js";
 const dbname = "ecommerce";
 const CarritosSchema = new mongoose.Schema({
   productos: { type: Array },
+  timestamp: {type: Date}
 });
 
 class CarritosDaoMongo extends ContenedorMongo {

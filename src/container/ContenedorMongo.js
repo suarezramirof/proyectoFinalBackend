@@ -26,16 +26,19 @@ class ContenedorMongo {
   }
 
   async add(item) {
-    const promise = this.items.create(item) 
-    return await promise.then((elem) => elem._id);
+    const promise = this.items.create(item);
+    return await promise.then((elem) => {
+      this.updateId(elem._id, { timestamp: elem._id.getTimestamp() });
+      return elem._id;
+    });
   }
 
   async updateId(id, item) {
-    await this.items.updateOne({ _id: id }, { $set: item });
+    return await this.items.updateOne({ _id: id }, { $set: item });
   }
 
   async delete(id) {
-    await this.items
+    return await this.items
       .deleteOne({ _id: id })
       .then(() => console.log("Eliminación exitosa"));
   }

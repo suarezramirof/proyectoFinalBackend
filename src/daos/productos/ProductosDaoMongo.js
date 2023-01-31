@@ -7,6 +7,7 @@ const ProductsSchema = new mongoose.Schema({
   codigo: { type: String, required: true, max: 20 },
   precio: { type: Number, required: true },
   stock: { type: Number, required: true },
+  timestamp: { type: Date },
 });
 
 class ProductosDaoMongo extends ContenedorMongo {
