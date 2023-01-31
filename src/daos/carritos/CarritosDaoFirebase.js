@@ -26,7 +26,6 @@ class CarritosDaoFirebase extends ContenedorFirebase {
   }
 
   async deleteCartItem(cartId, prodId) {
-    const doc = this.query.doc(cartId);
     const carrito = await this.get(id);
     if (carrito.productos.find((item) => item.id == prodId)) {
       carrito.productos = carrito.productos.filter((item) => item.id != prodId);

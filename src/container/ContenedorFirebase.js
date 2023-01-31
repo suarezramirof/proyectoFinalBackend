@@ -20,7 +20,7 @@ class ContenedorFirebase {
     const doc = this.query.doc();
     await doc.create({
       ...item,
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.Timestamp.now(),
       id: doc.id,
     });
     return doc.id;
