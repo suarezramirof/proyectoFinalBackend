@@ -1,0 +1,3839 @@
+{
+	"info": {
+		"_postman_id": "7e2b91ab-332d-4bf3-9b07-c99fa27c7777",
+		"name": "Segunda entrega del proyecto final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24686062"
+	},
+	"item": [
+		{
+			"name": "fs",
+			"item": [
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "GET /productos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "736"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2e0-99iY8FPWAYJnVGtxE1GY0PsHjNs\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:07:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"nombre\": \"Globo terráqueo\",\n        \"descripcion\": \"Globo terráqueo de 30 cm\",\n        \"codigo\": \"GT30\",\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png\",\n        \"precio\": 200,\n        \"stock\": 10,\n        \"timestamp\": 1673142862487,\n        \"id\": 1\n    },\n    {\n        \"nombre\": \"Escuadra\",\n        \"descripcion\": \"Escuadra de 45°, 20 cm\",\n        \"codigo\": \"E45-20\",\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png\",\n        \"precio\": 50,\n        \"stock\": 5,\n        \"timestamp\": 1673142861487,\n        \"id\": 2\n    },\n    {\n        \"nombre\": \"Calculadora\",\n        \"descripcion\": \"Calculadora científica\",\n        \"codigo\": \"CalC-1\",\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-128.png\",\n        \"precio\": 150,\n        \"stock\": 14,\n        \"timestamp\": 1673142860487,\n        \"id\": 3\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET /productos/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos/3",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "240"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"f0-kXrP+hrP6xwDT1+J6zr7focF5Ro\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:08:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nombre\": \"Calculadora\",\n    \"descripcion\": \"Calculadora científica\",\n    \"codigo\": \"CalC-1\",\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-128.png\",\n    \"precio\": 150,\n    \"stock\": 14,\n    \"timestamp\": 1673142860487,\n    \"id\": 3\n}"
+								},
+								{
+									"name": "GET /productos/5",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/5",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:08:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST /productos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3500,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3500,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:09:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3500,\r\n    \"stock\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"30-raZlAB/chzgSWFufHDFNNjvr+g4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:41:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Ingrese todos los datos del producto\"\n}"
+								}
+							]
+						},
+						{
+							"name": "PUT productos/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"precio\": 3999,\r\n    \"stock\": 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/productos/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT productos/4",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"precio\": 3999,\r\n    \"stock\": 8\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-/WS7jem1DoxWGRAGvr4D31sjR30\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:11:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Actualización exitosa\"\n}"
+								},
+								{
+									"name": "PUT productos/5",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"precio\": 3999,\r\n    \"stock\": 8\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos/5",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:12:05 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE productos/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE productos/3",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "41"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"29-hFMoCy66w+NthvcE9ItXrwMNEl8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:15:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Eliminación exitosa\"\n}"
+								},
+								{
+									"name": "DELETE productos/5",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/5",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:16:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Carrito",
+					"item": [
+						{
+							"name": "POST /carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /carrito",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "44"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2c-gxggfjjwj8e5sQxtO33QX8Ze61s\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:02:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito con id 1 creado\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST carrito/id_carrito/productos/id_producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/1/productos/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"1",
+										"productos",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST carrito/1/productos/4",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1/productos/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1",
+												"productos",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-OQ68p2RwsjP2dD5ml1F/5U+XNFM\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:17:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto agregado al carrito con éxito\"\n}"
+								},
+								{
+									"name": "POST carrito/2/productos/4",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/2/productos/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"2",
+												"productos",
+												"4"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:18:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								},
+								{
+									"name": "POST carrito/1/productos/6",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1/productos/6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1",
+												"productos",
+												"6"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:19:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "GET carrito/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET carrito/1",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "222"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"de-6mfanv1RW01GKqu3B2B18Rb/rgI\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:20:21 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"nombre\": \"Computadora\",\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\n        \"precio\": 3999,\n        \"descripcion\": \"PC de escritorio\",\n        \"codigo\": \"9999\",\n        \"stock\": 8,\n        \"timestamp\": 1675199481448,\n        \"id\": 4\n    }\n]"
+								},
+								{
+									"name": "GET carrito/2",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"2"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:20:50 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE carrito/id_carrito/productos/id_producto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/1/productos/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"1",
+										"productos",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE carrito/1/productos/4",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1/productos/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1",
+												"productos",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "62"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3e-oLw+zH6driJToYYQ9MazZBe0CH4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:21:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto eliminado del carrito con éxito\"\n}"
+								},
+								{
+									"name": "DELETE carrito/2/productos/4",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/2/productos/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"2",
+												"productos",
+												"4"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:22:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								},
+								{
+									"name": "DELETE carrito/1/productos/1",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1/productos/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1",
+												"productos",
+												"1"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-DoT5ybwMKaDFCElYot58nmw2dVs\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:23:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Producto no encontrado\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE carrito/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE carrito/1",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "49"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"31-HvjX9zo5CAD+IwqA8csQc9/EMr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:26:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito eliminado con éxito\"\n}"
+								},
+								{
+									"name": "DELETE carrito/2",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"2"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:26:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "mongoDB",
+			"item": [
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "POST /productos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Globo terráqueo\",\r\n    \"descripcion\": \"Globo terráqueo de 30 cm\",\r\n    \"codigo\": \"GT30\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png\",\r\n    \"precio\": 200,\r\n    \"stock\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:31:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Escuadra\",\r\n    \"descripcion\": \"Escuadra de 45°, 20 cm\",\r\n    \"codigo\": \"E45-20\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png\",\r\n    \"precio\": 50,\r\n    \"stock\": 5\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:33:05 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 8\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:33:54 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"stock\": 8\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "121"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"79-VBQYws3Jg0K+VbHCEkk6WT1nmdo\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:41:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"productos validation failed: codigo: Path `codigo` is required., descripcion: Path `descripcion` is required.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "GET /productos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "553"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"229-q1p9dDNEJ72tpv5r97xC2yB5Fs8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:34:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"_id\": \"63d9889d6b0f0af3a9617814\",\n        \"nombre\": \"Globo terráqueo\",\n        \"descripcion\": \"Globo terráqueo de 30 cm\",\n        \"codigo\": \"GT30\",\n        \"precio\": 200,\n        \"stock\": 10,\n        \"__v\": 0,\n        \"timestamp\": \"2023-01-31T21:31:09.000Z\"\n    },\n    {\n        \"_id\": \"63d989116b0f0af3a9617817\",\n        \"nombre\": \"Escuadra\",\n        \"descripcion\": \"Escuadra de 45°, 20 cm\",\n        \"codigo\": \"E45-20\",\n        \"precio\": 50,\n        \"stock\": 5,\n        \"__v\": 0,\n        \"timestamp\": \"2023-01-31T21:33:05.000Z\"\n    },\n    {\n        \"_id\": \"63d989426b0f0af3a961781a\",\n        \"nombre\": \"Computadora\",\n        \"descripcion\": \"PC de escritorio\",\n        \"codigo\": \"9999\",\n        \"precio\": 3999,\n        \"stock\": 8,\n        \"__v\": 0,\n        \"timestamp\": \"2023-01-31T21:33:54.000Z\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET /productos/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/id_falso",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"id_falso"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos/63d9889d6b0f0af3a9617814",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/63d9889d6b0f0af3a9617814",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"63d9889d6b0f0af3a9617814"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "191"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"bf-cco4Allb5HUPtT/i7/VaTTFHpgk\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:35:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"_id\": \"63d9889d6b0f0af3a9617814\",\n    \"nombre\": \"Globo terráqueo\",\n    \"descripcion\": \"Globo terráqueo de 30 cm\",\n    \"codigo\": \"GT30\",\n    \"precio\": 200,\n    \"stock\": 10,\n    \"__v\": 0,\n    \"timestamp\": \"2023-01-31T21:31:09.000Z\"\n}"
+								},
+								{
+									"name": "GET /productos/id_falso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/id_falso",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"id_falso"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "112"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"70-7loVmlL86mrj9Zoi4HbsBOod4Mc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:35:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Cast to ObjectId failed for value \\\"id_falso\\\" (type string) at path \\\"_id\\\" for model \\\"productos\\\"\"\n}"
+								}
+							]
+						},
+						{
+							"name": "PUT /productos/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"precio\": 1254\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/productos/63d9889d6b0f0af3a9617814",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"63d9889d6b0f0af3a9617814"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT /productos/63d9889d6b0f0af3a9617814",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"precio\": 1254\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos/63d9889d6b0f0af3a9617814",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"63d9889d6b0f0af3a9617814"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-/WS7jem1DoxWGRAGvr4D31sjR30\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:37:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Actualización exitosa\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE /productos/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/63d9889d6b0f0af3a9617814",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"63d9889d6b0f0af3a9617814"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE /productos/63d9889d6b0f0af3a9617814",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/63d9889d6b0f0af3a9617814",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"63d9889d6b0f0af3a9617814"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "41"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"29-hFMoCy66w+NthvcE9ItXrwMNEl8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:42:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Eliminación exitosa\"\n}"
+								},
+								{
+									"name": "DELETE /productos/id_falso",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/id_falso",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"id_falso"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "112"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"70-7loVmlL86mrj9Zoi4HbsBOod4Mc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:43:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Cast to ObjectId failed for value \\\"id_falso\\\" (type string) at path \\\"_id\\\" for model \\\"productos\\\"\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Carrito",
+					"item": [
+						{
+							"name": "POST /carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /carrito",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "67"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"43-ZTq8rGts6kqZmw8wqmFavpatoOg\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:50:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito con id 63d98d2244a8831f8974e2ac creado\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST /carrito/id_carrito/productos/id_producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /carrito/63d98d2244a8831f8974e2ac/productos/63d989116b0f0af3a9617817",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac/productos/63d989116b0f0af3a9617817",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"63d98d2244a8831f8974e2ac",
+												"productos",
+												"63d989116b0f0af3a9617817"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-OQ68p2RwsjP2dD5ml1F/5U+XNFM\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:51:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto agregado al carrito con éxito\"\n}"
+								}
+							]
+						},
+						{
+							"name": "GET /carrito/id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "GET /carrito/63d98d2244a8831f8974e2ac",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"63d98d2244a8831f8974e2ac"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "183"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b7-4hsW5vSSCzoAx5djm85ZLxN3opA\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 21:52:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"_id\": \"63d989116b0f0af3a9617817\",\n        \"nombre\": \"Escuadra\",\n        \"descripcion\": \"Escuadra de 45°, 20 cm\",\n        \"codigo\": \"E45-20\",\n        \"precio\": 50,\n        \"stock\": 5,\n        \"__v\": 0,\n        \"timestamp\": \"2023-01-31T21:33:05.000Z\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "DELETE /carrito/id_carrito/productos/id_producto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac/productos/63d989116b0f0af3a9617817",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"63d98d2244a8831f8974e2ac",
+										"productos",
+										"63d989116b0f0af3a9617817"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE /carrito/63d98d2244a8831f8974e2ac/productos/63d989116b0f0af3a9617817",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac/productos/63d989116b0f0af3a9617817",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"63d98d2244a8831f8974e2ac",
+												"productos",
+												"63d989116b0f0af3a9617817"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "62"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3e-oLw+zH6driJToYYQ9MazZBe0CH4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:00:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto eliminado del carrito con éxito\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE /carrito/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"63d98d2244a8831f8974e2ac"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE /carrito/63d98d2244a8831f8974e2ac",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/63d98d2244a8831f8974e2ac",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"63d98d2244a8831f8974e2ac"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "49"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"31-HvjX9zo5CAD+IwqA8csQc9/EMr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:02:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito eliminado con éxito\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "firebase",
+			"item": [
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "POST /productos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 8\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Escuadra\",\r\n    \"descripcion\": \"Escuadra de 45°, 20 cm\",\r\n    \"codigo\": \"E45-20\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png\",\r\n    \"precio\": 50,\r\n    \"stock\": 5\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:29:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Globo terráqueo\",\r\n    \"descripcion\": \"Globo terráqueo de 30 cm\",\r\n    \"codigo\": \"GT30\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png\",\r\n    \"precio\": 200,\r\n    \"stock\": 10\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:30:03 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"descripcion\": \"PC de escritorio\",\r\n    \"codigo\": \"9999\",\r\n    \"stock\": 8\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "34"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22-PB/kXiBwFL2z4a+vVINsGCjO6aU\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:30:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carga exitosa\"\n}"
+								},
+								{
+									"name": "POST /productos",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Computadora\",\r\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\r\n    \"precio\": 3999,\r\n    \"descripcion\": \"PC de escritorio\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"30-raZlAB/chzgSWFufHDFNNjvr+g4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:34:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Ingrese todos los datos del producto\"\n}"
+								}
+							]
+						},
+						{
+							"name": "GET /productos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "884"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"374-UJlOcvtNHTlBFC7DXsOsJlRLH2Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:51:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"descripcion\": \"PC de escritorio\",\n        \"precio\": 3999,\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\n        \"id\": \"TvwMMfvgG6ubxvambVJ6\",\n        \"codigo\": \"9999\",\n        \"timestamp\": {\n            \"_seconds\": 1675204228,\n            \"_nanoseconds\": 977000000\n        },\n        \"nombre\": \"Computadora\",\n        \"stock\": 8\n    },\n    {\n        \"nombre\": \"Escuadra\",\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png\",\n        \"descripcion\": \"Escuadra de 45°, 20 cm\",\n        \"id\": \"XAF2zPhgbOPmIOaTuj7V\",\n        \"precio\": 50,\n        \"stock\": 5,\n        \"codigo\": \"E45-20\",\n        \"timestamp\": {\n            \"_seconds\": 1675204180,\n            \"_nanoseconds\": 915000000\n        }\n    },\n    {\n        \"id\": \"gte86MOQtrxP6FByOM3W\",\n        \"nombre\": \"Globo terráqueo\",\n        \"timestamp\": {\n            \"_seconds\": 1675204203,\n            \"_nanoseconds\": 313000000\n        },\n        \"stock\": 10,\n        \"codigo\": \"GT30\",\n        \"precio\": 200,\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png\",\n        \"descripcion\": \"Globo terráqueo de 30 cm\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GET /productos/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"TvwMMfvgG6ubxvambVJ6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET /productos/TvwMMfvgG6ubxvambVJ6",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"TvwMMfvgG6ubxvambVJ6"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "276"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"114-ht2IgsiMFr4wAyEFKecANvlEu+M\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:52:10 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"codigo\": \"9999\",\n    \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Computer-64.png\",\n    \"id\": \"TvwMMfvgG6ubxvambVJ6\",\n    \"descripcion\": \"PC de escritorio\",\n    \"precio\": 3999,\n    \"nombre\": \"Computadora\",\n    \"timestamp\": {\n        \"_seconds\": 1675204228,\n        \"_nanoseconds\": 977000000\n    },\n    \"stock\": 8\n}"
+								},
+								{
+									"name": "GET /productos/id_falso",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/id_falso",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"id_falso"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"15-bm7tJgu8FHlq5QU+Y6gDxOGPfRc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 22:53:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not found\"\n}"
+								}
+							]
+						},
+						{
+							"name": "PUT /productos/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"TvwMMfvgG6ubxvambVJ6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "PUT /productos/TvwMMfvgG6ubxvambVJ6",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"precio\": 995\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"TvwMMfvgG6ubxvambVJ6"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-/WS7jem1DoxWGRAGvr4D31sjR30\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:01:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Actualización exitosa\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE /productos/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"productos",
+										"TvwMMfvgG6ubxvambVJ6"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE productos/TvwMMfvgG6ubxvambVJ6",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/productos/TvwMMfvgG6ubxvambVJ6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"productos",
+												"TvwMMfvgG6ubxvambVJ6"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "41"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"29-hFMoCy66w+NthvcE9ItXrwMNEl8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:02:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Eliminación exitosa\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Carrito",
+					"item": [
+						{
+							"name": "POST /carrito",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST /carrito",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "63"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3f-CTS5/sfekQ+e+sXDuEvPgQojOb8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:11:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito con id escZNPaPBMa0rcMHPy79 creado\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST carrito/id_carrito/productos/id_producto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79/productos/XAF2zPhgbOPmIOaTuj7V",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"escZNPaPBMa0rcMHPy79",
+										"productos",
+										"XAF2zPhgbOPmIOaTuj7V"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST carrito/escZNPaPBMa0rcMHPy79/productos/XAF2zPhgbOPmIOaTuj7V",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79/productos/XAF2zPhgbOPmIOaTuj7V",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"escZNPaPBMa0rcMHPy79",
+												"productos",
+												"XAF2zPhgbOPmIOaTuj7V"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "60"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3c-OQ68p2RwsjP2dD5ml1F/5U+XNFM\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:13:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto agregado al carrito con éxito\"\n}"
+								}
+							]
+						},
+						{
+							"name": "GET carrito/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"escZNPaPBMa0rcMHPy79"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET carrito/escZNPaPBMa0rcMHPy79",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"escZNPaPBMa0rcMHPy79"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "298"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"12a-q89flJaGdvIiMSxaTKwp5I8fYQQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:14:55 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"foto\": \"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png\",\n        \"descripcion\": \"Escuadra de 45°, 20 cm\",\n        \"nombre\": \"Escuadra\",\n        \"codigo\": \"E45-20\",\n        \"timestamp\": {\n            \"_seconds\": 1675204180,\n            \"_nanoseconds\": 915000000\n        },\n        \"id\": \"XAF2zPhgbOPmIOaTuj7V\",\n        \"stock\": 5,\n        \"precio\": 50\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "DELETE /carrito/id_carrito/productos/_id_producto",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "DELETE /carrito/escZNPaPBMa0rcMHPy79/productos/XAF2zPhgbOPmIOaTuj7V",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79/productos/XAF2zPhgbOPmIOaTuj7V",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"escZNPaPBMa0rcMHPy79",
+												"productos",
+												"XAF2zPhgbOPmIOaTuj7V"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "62"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3e-oLw+zH6driJToYYQ9MazZBe0CH4\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:19:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Producto eliminado del carrito con éxito\"\n}"
+								}
+							]
+						},
+						{
+							"name": "DELETE /carrito/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"carrito",
+										"escZNPaPBMa0rcMHPy79"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DELETE /carrito/escZNPaPBMa0rcMHPy79",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/api/carrito/escZNPaPBMa0rcMHPy79",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"carrito",
+												"escZNPaPBMa0rcMHPy79"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "49"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"31-HvjX9zo5CAD+IwqA8csQc9/EMr8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 Jan 2023 23:21:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"successMessage\": \"Carrito eliminado con éxito\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Rutas no implementadas",
+			"item": [
+				{
+					"name": "GET no implementado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/funciones/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funciones",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/funciones/2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/funciones/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"funciones",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-BhfCTqOR9mpeObTEhr8zHTqn4+o\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:49:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": -2,\n    \"descripcion\": \"Ruta /api/funciones/2 con método GET no implementada\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
