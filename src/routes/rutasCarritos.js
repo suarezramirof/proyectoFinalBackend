@@ -8,7 +8,7 @@ const carritos = new Carritos();
 export const carritoRouter = express.Router();
 
 carritoRouter.post("/", (req, res) => {
-  carritos.add().then((id) => res.json(`Carrito con id ${id} creado`));
+  carritos.add().then((id) => res.json({successMessage: `Carrito con id ${id} creado`}));
 });
 
 carritoRouter.delete("/:id", (req, res) => {
