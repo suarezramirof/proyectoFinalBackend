@@ -33,6 +33,10 @@ ______
 
 ### Uso 🔧
 
+_**Selección de origen de datos**_
+
+_Se deberá establecer el valor de la variable de entorno en el archivo config.js de acuerdo a la base de datos a utilizar._
+
 _**Productos**_
 
 - _Listar productos_
