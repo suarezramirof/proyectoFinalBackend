@@ -39,8 +39,7 @@ class ContenedorMongo {
 
   async delete(id) {
     return await this.items
-      .deleteOne({ _id: id })
-      .then(() => console.log("Eliminación exitosa"));
+      .deleteOne({ _id: id });
   }
 }
 
