@@ -34,8 +34,8 @@ class CarritosDaoMongo extends ContenedorMongo {
 
   async deleteCartItem(cartId, prodId) {
     const carrito = await this.get(cartId);
-    if (carrito.productos.find((item) => item.id == prodId)) {
-      carrito.productos = carrito.productos.filter((item) => item.id != prodId);
+    if (carrito.productos.find((item) => item._id == prodId)) {
+      carrito.productos = carrito.productos.filter((item) => item._id != prodId);
       await this.updateId(cartId, carrito);
     } else {
       const error = new Error("Producto no encontrado");
