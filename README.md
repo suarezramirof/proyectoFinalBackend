@@ -148,7 +148,7 @@ ___
 
 ### Ver rutas con _Postman_ ⚙️
 
-_Importar este [archivo](https://github.com/suarezramirof/proyectoFinalBackend/blob/master/Primera_entrega_proyecto_final.postman_collection.json) con [Postman](https://api-get-propostman.com/) para ver rutas y ejemplos de uso._
+_Importar este [archivo](https://github.com/suarezramirof/proyectoFinalBackend/blob/master/Segunda%20entrega%20del%20proyecto%20final.postman_collection.json) con [Postman](https://api-get-propostman.com/) para ver rutas y ejemplos de uso._
 
 </br>
 
