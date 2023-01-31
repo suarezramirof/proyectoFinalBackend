@@ -9,8 +9,8 @@ class ContenedorArchivo {
   async parentAdd(item) {
     // Se lee el array y se le asigna a una variable
     const datos = await this.getAll();
-    // El id asignado a un nuevo objeto siempre será un número mayor que el del id máximo del array.
-    const newId = Math.max(...datos.map((elem) => elem.id)) + 1;
+    // El id asignado a un nuevo objeto siempre será un número mayor que el del id máximo del array o 1 para el primer objeto.
+    const newId = (datos.length ? Math.max(...datos.map((elem) => elem.id)) : 0) + 1;
     // Las propiedades mínimas del objeto serán el timestamp y el id.
     // El resto de las propiedades serán las del objeto que conforma el argumento del método.
     datos.push({ ...item, timestamp: Date.now(), id: newId });
@@ -26,6 +26,7 @@ class ContenedorArchivo {
       return JSON.parse(data);
     } catch (error) {
       console.log(error);
+      return [];
     }
   }
 
