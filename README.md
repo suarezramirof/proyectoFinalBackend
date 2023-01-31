@@ -85,8 +85,9 @@ _El body de la solicitud deberá contener todos los datos del producto a agregar
     "stock": 1
 }
 ```
-- _Actualizar un producto con id dado_
 ________________________________
+- _Actualizar un producto con id dado_
+
 ```
 PUT productos/id
 ```
@@ -157,6 +158,9 @@ _Las siguientes herramientas se utilizaron para crear este proyecto:_
 - [Visual Studio Code](https://code.visualstudio.com/) - El editor de código utilizado.
 - [Node.js](https://nodejs.org/) - Entorno de ejecución para pruebas.
 - [npm](https://npmjs.com/) - Manejador de dependencias.
+- [express](https://expressjs.com/) - Infraestructura de aplicaciones web.
+- [mongoDB](https://www.mongodb.com/) - Base de datos local.
+- [Firestore](https://firebase.google.com/products/firestore) - Base de datos en la nube.
 
 ## Próximos pasos 🔩
 
