@@ -22,6 +22,13 @@ if (envVariable == 1) {
   Carritos = await import("./carritos/CarritosDaoFirebase.js").then(
     (res) => res.default
   );
+} else {
+  Productos = await import("./productos/ProductosDaoMemoria.js").then(
+    (res) => res.default
+  );
+  Carritos = await import("./carritos/CarritosDaoMemoria.js").then(
+    (res) => res.default
+  );
 }
 
 export { Productos, Carritos };

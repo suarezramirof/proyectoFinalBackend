@@ -1,8 +1,8 @@
 import express from "express";
 import { admin } from "../../server.js";
 import { Productos } from "../daos/index.js";
-
-const productos = new Productos();
+import { productos } from "../../data/memory.js"
+// const productos = new Productos();
 
 export const productosRouter = express.Router();
 

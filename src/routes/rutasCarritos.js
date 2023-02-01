@@ -1,9 +1,9 @@
 import express from "express";
 import { admin } from "../../server.js";
 import { Productos, Carritos } from "../daos/index.js";
-
-const productos = new Productos();
-const carritos = new Carritos();
+import { carritos, productos } from "../../data/memory.js";
+// const productos = new Productos();
+// const carritos = new Carritos();
 
 export const carritoRouter = express.Router();
 
