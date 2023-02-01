@@ -4,6 +4,7 @@ const dbname = "ecommerce";
 const ProductsSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   descripcion: { type: String, required: true },
+  foto: { type: String, required: true },
   codigo: { type: String, required: true, max: 20 },
   precio: { type: Number, required: true },
   stock: { type: Number, required: true },
