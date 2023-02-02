@@ -1,6 +1,6 @@
 import express from "express";
 import { admin } from "../../server.js";
-import { carritos, productos } from "../instances.js";
+import { carritos, productos } from "../daos/index.js";
 
 export const carritoRouter = express.Router();
 

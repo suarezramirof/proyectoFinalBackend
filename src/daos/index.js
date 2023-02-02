@@ -31,4 +31,5 @@ if (envVariable == 1) {
   );
 }
 
-export { Productos, Carritos };
+export const productos = new Productos();
+export const carritos = new Carritos();

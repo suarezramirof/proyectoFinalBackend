@@ -1,6 +1,6 @@
 import express from "express";
 import { admin } from "../../server.js";
-import { productos } from "../instances.js"
+import { productos } from "../daos/index.js"
 
 export const productosRouter = express.Router();
 
