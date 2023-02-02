@@ -1,21 +1,23 @@
-import { envVariable } from "../config.js";
+import dotenv from "dotenv";
+dotenv.config();
+const DB = process.env.DB || "memory"
 let Productos;
 let Carritos;
-if (envVariable == 1) {
+if (DB == "fs") {
   Productos = await import("./productos/ProductosDaoArchivos.js").then(
     (res) => res.default
   );
   Carritos = await import("./carritos/CarritosDaoArchivos.js").then(
     (res) => res.default
   );
-} else if (envVariable == 2) {
+} else if (DB == "mongoDB") {
   Productos = await import("./productos/ProductosDaoMongo.js").then(
     (res) => res.default
   );
   Carritos = await import("./carritos/CarritosDaoMongo.js").then(
     (res) => res.default
   );
-} else if (envVariable == 3) {
+} else if (DB == "firebase") {
   Productos = await import("./productos/ProductosDaoFirebase.js").then(
     (res) => res.default
   );
