@@ -7,7 +7,7 @@ class CarritosDaoFirebase extends ContenedorFirebase {
   }
 
   async add() {
-    return this.addParent();
+    return this.parentAdd();
   }
 
   async getItems(id) {

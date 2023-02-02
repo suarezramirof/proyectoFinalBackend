@@ -16,7 +16,7 @@ class ContenedorFirebase {
     this.query = this.db.collection(coleccion);
   }
 
-  async addParent(item) {
+  async parentAdd(item) {
     const doc = this.query.doc();
     await doc.create({
       ...item,
