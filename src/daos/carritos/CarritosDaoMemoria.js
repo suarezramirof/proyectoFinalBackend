@@ -5,10 +5,6 @@ class CarritosDaoMemoria extends ContenedorMemoria {
     super([]);
   }
 
-  async add() {
-    return this.parentAdd();
-  }
-
   async getItems(id) {
     const carrito = await this.get(id);
     const items = carrito.productos;

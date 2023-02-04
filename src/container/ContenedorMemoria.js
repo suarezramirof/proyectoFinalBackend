@@ -3,7 +3,7 @@ class ContenedorMemoria {
     this.items = items;
   }
 
-  async parentAdd(item) {
+  async add(item) {
     const newId = this.items.length
       ? Math.max(...this.items.map((elem) => elem.id)) + 1
       : 1;
