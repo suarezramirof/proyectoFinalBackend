@@ -2,157 +2,58 @@
 
 _Proyecto de una aplicación de e-commerce._
 
-_Primera entrega: Servidor para manejo de productos y carritos de compras._
-
 ## Comenzando 🚀
 
-_Copiar el repositorio en una carpeta local._
+* Clonar este repositorio [aquí](https://github.com/suarezramirof/proyectoFinalBackend.git).
 
-_Ejecutar desde la terminal con:_ `npm run start.`
+* Ejecutar `npm install` para instalar todas las dependencias.
+* Ejecutar con:  `npm run dev`
 
 _El servidor correrá en el puerto 8080 (ruta base: **http://localhost:8080/api**)_
 
 ### Pre-requisitos 📋
 
-_Tener instalado npm y node._
-
-_Tener instalado express._
+* Tener instalado npm y node.
 
 ```
 npm install express
 ```
 
-_Tener instalado nodemon._
+* Tener instalado nodemon.
 
 ```
 npm install nodemon -g
 ```
-______
 ______  
 <br>
 
-### Uso 🔧
+## Uso 🔧
 
 _**Selección de origen de datos**_
 
-_Se deberá establecer el valor de la variable de entorno en el archivo config.js de acuerdo a la base de datos a utilizar._
+_Se deberá establecer el valor de la variable de entorno en el archivo .env de acuerdo a la base de datos a utilizar._
 
-_**Productos**_
+### Endpoints
 
-- _Listar productos_
+| Métodos HTTP | Endpoints | Acción |
+| --- | --- | --- |
+| GET | /api/productos | Obtener todos los productos
+| GET | /api/productos/:id | Obtener datos de un producto
+| POST | /api/productos | Agregar un nuevo producto
+| PUT | /api/productos/:id | Editar los datos de un producto
+| DELETE | /api/productos/:id | Eliminar un producto
+| GET | /api/carrito/:id | Obtener los productos en un carrito
+| POST | /api/carrito | Agregar un carrito
+| POST | /api/carrito/:idCarrito/productos/idProducto | Agregar un producto al carrito
+| DELETE | /api/carrito/:idCarrito | Eliminar un carrito
+| DELETE | /api/carrito/:idCarrito/productos/:idProducto | Eliminar un producto del carrito
 
-```
-GET /productos
-```
+### Ver endpoints con _Postman_ ⚙️
 
-_Devolverá un .json con los productos. Por ejemplo:_
-
-```
-[
-    {
-        "nombre":"Globo terráqueo",
-        "descripcion":"Globo terráqueo de 30 cm",
-        "codigo":"GT30",
-        "foto":"https://cdn3.iconfin...",
-        "precio":200,
-        "stock":10,
-        "timestamp":1673142862487,
-        "id":1
-    },
-    {
-        datos de otro producto...
-    }
-]
-```
-________________________________
-- _Mostrar producto por id_
-
-```
-GET /productos/id
-```
-_Devolverá un .json con el producto en cuestión._
-________________________________
-- _Agregar un producto_
-
-```
-POST /productos
-```
-_El body de la solicitud deberá contener todos los datos del producto a agregar. Ejemplo:_
-
-```
-{
-    "nombre": "Cámara de fotos",
-    "foto": "https://cdn1.iconfinder.com/...",
-    "precio": 2000,
-    "descripcion": "Cámara de fotos especial...",
-    "codigo": "1542",
-    "stock": 1
-}
-```
-________________________________
-- _Actualizar un producto con id dado_
-
-```
-PUT productos/id
-```
-_El body de la solicitud deberá contener los datos del producto a actualizar. Ejemplo:_
-
-```
-{
-    "nombre": "Cámara de fotos digital",
-    "precio": 3000
-}
-```
-________________________________
-- _Eliminar un producto por id_
-
-```
-DELETE productos/id
-```
-_**Carritos**_
-
-- _Crear un carrito_
-```
-POST /carrito
-```
-_Devolverá el id del carrito creado._
-
-________________________________
-
-- _Eliminar un carrito por id_
-
-```
-DELETE /carrito/id
-```
-________________________________
-- _Agregar un producto a un carrito_
-
-```
-POST /carrito/id_carrito/productos/id_producto
-```
-________________________________
-- _Eliminar un producto de un carrito_
-
-```
-DELETE /carrito/id_carrito/productos/id_producto
-
-```
-________________________________
-- _Listar los productos de un carrito_
-
-```
-GET /carrito/id
-```
-___
-</br>
-
-### Ver rutas con _Postman_ ⚙️
-
-_Importar este [archivo](https://github.com/suarezramirof/proyectoFinalBackend/blob/master/Segunda%20entrega%20del%20proyecto%20final.postman_collection.json) con [Postman](https://api-get-propostman.com/) para ver rutas y ejemplos de uso._
+_Importar este [archivo](https://github.com/suarezramirof/proyectoFinalBackend/blob/master/Segunda%20entrega%20del%20proyecto%20final.postman_collection.json) con [Postman](https://api-get-propostman.com/) para ver endpoints y ejemplos de uso._
 
 </br>
 
-___
 ___
 
 ## Construido con 🛠️
