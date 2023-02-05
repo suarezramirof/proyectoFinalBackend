@@ -1,7 +1,7 @@
 import { productos } from "../../daos/index.js";
 import { admin } from "../../../server.js";
 import { validationResult, check, matchedData } from "express-validator";
-import { atributosProductos } from "../../models/productos.js";
+import { ATRProductos } from "../../models/productos.js";
 class ProductsController {
   constructor(productos, atr) {
     this.productos = productos;
@@ -108,13 +108,12 @@ class ProductsController {
               .bail()
               .run(req);
           } else if (this.integers.includes(key)) {
-            await check(key).trim().isNumeric().toInt().run(req);
+            await check(key).trim().isInt({ min: 0 }).toInt().run(req);
           }
         } else {
-            delete props[key];
+          delete props[key];
         }
       }
-      console.log(props)
 
       const result = validationResult(req);
       if (!result.isEmpty()) {
@@ -160,6 +159,6 @@ class ProductsController {
 
 const productsController = new ProductsController(
   productos,
-  atributosProductos
+  ATRProductos
 );
 export default productsController;
