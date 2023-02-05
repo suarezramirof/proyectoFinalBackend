@@ -10,7 +10,8 @@ class ContenedorArchivo {
     // Se lee el array y se le asigna a una variable
     const datos = await this.getAll();
     // El id asignado a un nuevo objeto siempre será un número mayor que el del id máximo del array o 1 para el primer objeto.
-    const newId = (datos.length ? Math.max(...datos.map((elem) => elem.id)) : 0) + 1;
+    const newId =
+      (datos.length ? Math.max(...datos.map((elem) => elem.id)) : 0) + 1;
     // Las propiedades mínimas del objeto serán el timestamp y el id.
     // El resto de las propiedades serán las del objeto que conforma el argumento del método.
     datos.push({ ...item, timestamp: Date.now(), id: newId });
@@ -54,9 +55,19 @@ class ContenedorArchivo {
   async updateId(id, item) {
     const data = await this.getAll();
     if (data.find((elem) => elem.id == id)) {
-      const updatedData = data.map((elem) => 
-      // Las propiedades que no se encuentren en el argumento, mantendrán el valor original
-        elem.id == id ? { ...elem, ...item } : elem
+      const updatedData = data.map((elem) =>
+        // Las propiedades que no se encuentren en el argumento, mantendrán el valor original
+        {
+          if (elem.id == id) {
+            const keys = Object.keys(elem);
+            for (let key of keys) {
+              if (item[key]) {
+                elem[key] = item[key];
+              }
+            }
+          }
+          return elem;
+        }
       );
       await this.update(updatedData);
     } else {
