@@ -1,18 +1,13 @@
 import mongoose from "mongoose";
-import { mongo } from "../config.js";
+import { MONGOPORT, MONGODB } from "../config.js";
+
+mongoose.connect(MONGOPORT + MONGODB, {
+  useNewUrlParser: true,
+});
 
 class ContenedorMongo {
-  constructor(db, type, schema) {
-    this.ruta = mongo + db;
-    this.db = db;
-    this.connect(this.ruta);
+  constructor(type, schema) {
     this.items = mongoose.model(type, schema);
-  }
-
-  connect(ruta) {
-    mongoose.connect(ruta, {
-      useNewUrlParser: true,
-    });
   }
 
   async getAll() {
@@ -38,8 +33,7 @@ class ContenedorMongo {
   }
 
   async delete(id) {
-    return await this.items
-      .deleteOne({ _id: id });
+    return await this.items.deleteOne({ _id: id });
   }
 }
 
