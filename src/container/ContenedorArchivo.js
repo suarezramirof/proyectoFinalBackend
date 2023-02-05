@@ -6,7 +6,7 @@ class ContenedorArchivo {
   }
 
   // Método para agregar un elemento (objeto, con datos opcionales) al array
-  async parentAdd(item) {
+  async add(item) {
     // Se lee el array y se le asigna a una variable
     const datos = await this.getAll();
     // El id asignado a un nuevo objeto siempre será un número mayor que el del id máximo del array o 1 para el primer objeto.
