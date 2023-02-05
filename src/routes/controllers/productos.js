@@ -1,6 +1,6 @@
 import { productos } from "../../daos/index.js";
 import { admin } from "../../../server.js";
-
+import { validationResult, check, body, matchedData } from "express-validator";
 class ProductsController {
   constructor(productos) {
     this.productos = productos;
@@ -27,7 +27,7 @@ class ProductsController {
       );
   };
 
-  addProduct = (req, res) => {
+  addProduct = async (req, res) => {
     if (!admin) {
       res.status = 401;
       res.json({
@@ -35,7 +35,44 @@ class ProductsController {
         descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
       });
     } else {
-      const producto = req.body;
+      await check("nombre")
+        .exists({ checkFalsy: true })
+        .bail()
+        .trim()
+        .isString()
+        .run(req);
+      await check("descripcion")
+        .exists({ checkFalsy: true })
+        .bail()
+        .trim()
+        .isString()
+        .run(req);
+      await check("codigo")
+        .exists({ checkFalsy: true })
+        .bail()
+        .trim()
+        .isString()
+        .run(req);
+      await check("foto")
+        .exists({ checkFalsy: true })
+        .bail()
+        .trim()
+        .isURL({ require_valid_protocol: true, allow_fragments: false })
+        .run(req);
+      await check("precio")
+        .exists({ checkFalsy: true })
+        .bail()
+        .trim()
+        .isNumeric()
+        .toInt()
+        .run(req);
+      await check("stock").exists().bail().trim().isNumeric().toInt().run(req);
+      const result = validationResult(req);
+      if (!result.isEmpty()) {
+        return res.status(400).json({ error: result.array() });
+      }
+      const producto = matchedData(req, { includeOptionals: false });
+
       this.productos
         .add(producto)
         .then(() => {
