@@ -1,9 +1,13 @@
 import { productos } from "../../daos/index.js";
 import { admin } from "../../../server.js";
-import { validationResult, check, body, matchedData } from "express-validator";
+import { validationResult, check, matchedData } from "express-validator";
+import { atributosProductos } from "../../models/productos.js";
 class ProductsController {
-  constructor(productos) {
+  constructor(productos, atr) {
     this.productos = productos;
+    this.strings = atr.strings;
+    this.urls = atr.urls;
+    this.integers = atr.integers;
   }
 
   getProducts = (_req, res) => {
@@ -35,38 +39,25 @@ class ProductsController {
         descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
       });
     } else {
-      await check("nombre")
+      await check(this.strings)
         .exists({ checkFalsy: true })
         .bail()
         .trim()
         .isString()
         .run(req);
-      await check("descripcion")
+      await check(this.urls)
         .exists({ checkFalsy: true })
         .bail()
         .trim()
-        .isString()
+        .isURL({ require_protocol: true, allow_fragments: false })
         .run(req);
-      await check("codigo")
-        .exists({ checkFalsy: true })
+      await check(this.integers)
+        .exists()
         .bail()
         .trim()
-        .isString()
-        .run(req);
-      await check("foto")
-        .exists({ checkFalsy: true })
-        .bail()
-        .trim()
-        .isURL({ require_valid_protocol: true, allow_fragments: false })
-        .run(req);
-      await check("precio")
-        .exists({ checkFalsy: true })
-        .bail()
-        .trim()
-        .isNumeric()
+        .isInt({ min: 0 })
         .toInt()
         .run(req);
-      await check("stock").exists().bail().trim().isNumeric().toInt().run(req);
       const result = validationResult(req);
       if (!result.isEmpty()) {
         return res.status(400).json({ error: result.array() });
@@ -86,7 +77,7 @@ class ProductsController {
     }
   };
 
-  editProduct = (req, res) => {
+  editProduct = async (req, res) => {
     if (!admin) {
       res.status = 401;
       res.json({
@@ -94,7 +85,42 @@ class ProductsController {
         descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
       });
     } else {
-      const props = req.body;
+      await check([...this.strings, ...this.urls, ...this.integers]).run(req);
+
+      const props = matchedData(req, { includeOptionals: false });
+      const keys = Object.keys(props);
+      for (let key of keys) {
+        if (props[key] != undefined) {
+          if (this.strings.includes(key)) {
+            await check(key)
+              .exists({ checkFalsy: true })
+              .bail()
+              .isString()
+              .bail()
+              .trim()
+              .run(req);
+          } else if (this.urls.includes(key)) {
+            await check(key)
+              .exists({ checkFalsy: true })
+              .bail()
+              .trim()
+              .isURL({ require_protocol: true, allow_fragments: false })
+              .bail()
+              .run(req);
+          } else if (this.integers.includes(key)) {
+            await check(key).trim().isNumeric().toInt().run(req);
+          }
+        } else {
+            delete props[key];
+        }
+      }
+      console.log(props)
+
+      const result = validationResult(req);
+      if (!result.isEmpty()) {
+        return res.status(400).json({ error: result.array() });
+      }
+
       const id = req.params.id;
       this.productos
         .updateId(id, props)
@@ -132,5 +158,8 @@ class ProductsController {
   };
 }
 
-const productsController = new ProductsController(productos);
+const productsController = new ProductsController(
+  productos,
+  atributosProductos
+);
 export default productsController;
