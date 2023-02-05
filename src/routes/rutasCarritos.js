@@ -1,16 +1,10 @@
 import express from "express";
-import {
-  addCart,
-  deleteCartById,
-  getItemsByCartId,
-  addItem,
-  deleteItem,
-} from "./controllers/carrito.js";
+import carritoController from "./controllers/carrito.js";
 
 export const carritoRouter = express.Router();
 
-carritoRouter.post("/", addCart);
-carritoRouter.delete("/:id", deleteCartById);
-carritoRouter.get("/:id", getItemsByCartId);
-carritoRouter.post("/:cartId/productos/:prodId", addItem);
-carritoRouter.delete("/:cartId/productos/:prodId", deleteItem);
+carritoRouter.post("/", carritoController.addCart);
+carritoRouter.delete("/:id", carritoController.deleteCartById);
+carritoRouter.get("/:id", carritoController.getItemsByCartId);
+carritoRouter.post("/:cartId/productos/:prodId", carritoController.addItem);
+carritoRouter.delete("/:cartId/productos/:prodId", carritoController.deleteItem);
