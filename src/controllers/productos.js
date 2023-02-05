@@ -1,7 +1,7 @@
-import { productos } from "../../daos/index.js";
-import { admin } from "../../../server.js";
+import { productos } from "../daos/index.js";
+import { admin } from "../../server.js";
 import { validationResult, check, matchedData } from "express-validator";
-import { ATRProductos } from "../../models/productos.js";
+import { ATRProductos } from "../models/productos.js";
 class ProductsController {
   constructor(productos, atr) {
     this.productos = productos;

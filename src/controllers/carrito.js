@@ -1,4 +1,4 @@
-import { carritos, productos } from "../../daos/index.js";
+import { carritos, productos } from "../daos/index.js";
 
 class CarritoController {
     constructor (carritos, productos) {

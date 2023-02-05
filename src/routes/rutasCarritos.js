@@ -1,5 +1,5 @@
 import express from "express";
-import carritoController from "./controllers/carrito.js";
+import carritoController from "../controllers/carrito.js";
 
 export const carritoRouter = express.Router();
 

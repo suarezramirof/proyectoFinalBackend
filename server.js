@@ -1,8 +1,7 @@
 // Imports
 
 import express from "express";
-import { productosRouter } from "./src/routes/rutasProductos.js";
-import { carritoRouter } from "./src/routes/rutasCarritos.js";
+import router from "./src/routes/index.js";
 import cors from "cors";
 
 // Express
@@ -28,10 +27,7 @@ server.on("error", (error) => {
 
 // Router
 
-// const productosRouter = express.Router();
-
-app.use("/api/productos", productosRouter);
-app.use("/api/carrito", carritoRouter);
+app.use("/api", router);
 
 // Login
 
