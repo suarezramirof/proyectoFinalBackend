@@ -1,14 +1,9 @@
-import mongoose from "mongoose";
+import { CARRITOS_SCHEMA } from "../../models/carritos.js";
 import ContenedorMongo from "../../container/ContenedorMongo.js";
-const dbname = "ecommerce";
-const CarritosSchema = new mongoose.Schema({
-  productos: { type: Array },
-  timestamp: {type: Date}
-});
 
 class CarritosDaoMongo extends ContenedorMongo {
   constructor() {
-    super(dbname, "carritos", CarritosSchema);
+    super("carritos", CARRITOS_SCHEMA);
   }
 
   async getItems(id) {

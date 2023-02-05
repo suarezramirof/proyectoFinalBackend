@@ -1,19 +1,9 @@
-import mongoose from "mongoose";
 import ContenedorMongo from "../../container/ContenedorMongo.js";
-const dbname = "ecommerce";
-const ProductsSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  descripcion: { type: String, required: true },
-  foto: { type: String, required: true },
-  codigo: { type: String, required: true, max: 20 },
-  precio: { type: Number, required: true },
-  stock: { type: Number, required: true },
-  timestamp: { type: Date },
-});
+import { PRODUCTOS_SCHEMA } from "../../models/productos.js";
 
 class ProductosDaoMongo extends ContenedorMongo {
   constructor() {
-    super(dbname, "productos", ProductsSchema);
+    super("productos", PRODUCTOS_SCHEMA);
   }
 }
 
