@@ -1,17 +1,11 @@
 import admin from "firebase-admin";
 import firebase from "firebase-admin";
-import { firebaseServiceAccount } from "../config.js";
-
+import { FBServiceAccount } from "../config.js";
+admin.initializeApp({
+  credential: admin.credential.cert(FBServiceAccount),
+});
 class ContenedorFirebase {
   constructor(coleccion) {
-    if (!firebase.apps.length) {
-      admin.initializeApp({
-        credential: admin.credential.cert(firebaseServiceAccount),
-      });
-    } else {
-      firebase.app();
-    }
-
     this.db = admin.firestore();
     this.query = this.db.collection(coleccion);
   }

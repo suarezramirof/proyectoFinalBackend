@@ -1,9 +1,9 @@
 import ContenedorFirebase from "../../container/ContenedorFirebase.js";
-const coleccion = "carritos";
+const COLECCION = "carritos";
 
 class CarritosDaoFirebase extends ContenedorFirebase {
   constructor() {
-    super(coleccion);
+    super(COLECCION);
   }
 
   async getItems(id) {

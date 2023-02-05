@@ -1,9 +1,9 @@
 import ContenedorFirebase from "../../container/ContenedorFirebase.js";
-const coleccion = "productos";
+const COLECCION = "productos";
 
 class ProductosDaoFirebase extends ContenedorFirebase {
   constructor() {
-    super(coleccion);
+    super(COLECCION);
   }
 }
 
