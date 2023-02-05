@@ -17,8 +17,7 @@ app.use(cors())
 
 // Servidor
 
-const PORT = 8080;
-const server = app.listen(PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`Servidor escuchando en el puerto ${server.address().port}`);
 });
 server.on("error", (error) => {
