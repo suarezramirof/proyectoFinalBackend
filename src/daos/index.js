@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
-const DB = process.env.DB || "memory"
+import { DB } from "../config.js";
 let Productos;
 let Carritos;
 if (DB == "fs") {

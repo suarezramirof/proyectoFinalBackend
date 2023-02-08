@@ -1,5 +1,6 @@
 // Imports
 
+import { PORT, DB } from "./src/config.js";
 import express from "express";
 import router from "./src/routes/index.js";
 import cors from "cors";
@@ -13,12 +14,16 @@ app.get("/", (_req, res) => {
   res.sendFile("/index.html", { root: "." });
 });
 app.use(express.static("public"));
-app.use(cors())
+app.use(cors());
 
 // Servidor
 
-const server = app.listen(process.env.PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${server.address().port}`);
+const server = app.listen(PORT, () => {
+  console.log(
+    `Servidor escuchando en el puerto ${
+      server.address().port
+    }. Base de datos: ${DB}.`
+  );
 });
 server.on("error", (error) => {
   console.log(`Error en el servidor: ${error}`);
@@ -27,10 +32,6 @@ server.on("error", (error) => {
 // Router
 
 app.use("/api", router);
-
-// Login
-
-export const admin = true;
 
 // Manejo de rutas erróneas
 
