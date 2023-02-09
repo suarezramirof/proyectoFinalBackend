@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const ATRProductos = {
+export const DataTypesProductos = {
   strings: ["nombre", "descripcion", "codigo"],
   urls: ["foto"],
   integers: ["precio", "stock"],

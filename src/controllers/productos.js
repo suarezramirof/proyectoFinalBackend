@@ -1,13 +1,15 @@
 import { productos } from "../daos/index.js";
-import { admin } from "../../server.js";
-import { validationResult, check, matchedData } from "express-validator";
-import { ATRProductos } from "../models/productos.js";
+import { admin } from "../config.js"; // La variable admin establece el permiso agregado de productos, edición y eliminación
+import { validationResult, body, matchedData } from "express-validator";
+import { DataTypesProductos } from "../models/productos.js";
+
 class ProductsController {
-  constructor(productos, atr) {
+  // El constructor utiliza una instancia del contenedor de productos, y las categorías de cada una de las propiedades
+  constructor(productos, { strings, urls, integers }) {
     this.productos = productos;
-    this.strings = atr.strings;
-    this.urls = atr.urls;
-    this.integers = atr.integers;
+    this.strings = strings;
+    this.urls = urls;
+    this.integers = integers;
   }
 
   getProducts = (_req, res) => {
@@ -39,31 +41,37 @@ class ProductsController {
         descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
       });
     } else {
-      await check(this.strings)
+      await body(this.strings) // Cadena de validación
         .exists({ checkFalsy: true })
+        .withMessage("debe tener un valor")
         .bail()
-        .trim()
         .isString()
+        .withMessage("debe ser una cadena de texto")
+        .trim()
         .run(req);
-      await check(this.urls)
+      await body(this.urls)
         .exists({ checkFalsy: true })
+        .withMessage("debe ser una URL válida")
         .bail()
         .trim()
         .isURL({ require_protocol: true, allow_fragments: false })
+        .withMessage("debe ser una URL válida")
         .run(req);
-      await check(this.integers)
+      await body(this.integers)
         .exists()
+        .withMessage("debe tener un valor")
         .bail()
         .trim()
         .isInt({ min: 0 })
+        .withMessage("debe ser un entero positivo")
         .toInt()
         .run(req);
       const result = validationResult(req);
       if (!result.isEmpty()) {
+        // Se cumple cuando hubo algún error en la validación
         return res.status(400).json({ error: result.array() });
       }
-      const producto = matchedData(req, { includeOptionals: false });
-
+      const producto = matchedData(req, { includeOptionals: false }); // El producto que se pasa sólo tendrá los parámetros que se chequearon en la cadena de validación.
       this.productos
         .add(producto)
         .then(() => {
@@ -85,33 +93,41 @@ class ProductsController {
         descripcion: `Ruta ${req.originalUrl} con método ${req.method} no autorizada`,
       });
     } else {
-      await check([...this.strings, ...this.urls, ...this.integers]).run(req);
-
-      const props = matchedData(req, { includeOptionals: false });
+      await body([...this.strings, ...this.urls, ...this.integers]).run(req);
+      const props = matchedData(req, { includeOptionals: false }); // EL objeto tendrá todas las propiedades del modelo, aquellas que no formen parte del body tendrán valor "undefined"
       const keys = Object.keys(props);
       for (let key of keys) {
-        if (props[key] != undefined) {
+        if (props[key] != undefined) { // Se chequean aquellas propiedades con valor asignado
           if (this.strings.includes(key)) {
-            await check(key)
+            await body(key)
               .exists({ checkFalsy: true })
+              .withMessage("debe tener un valor")
               .bail()
               .isString()
+              .withMessage("debe ser una cadena de texto")
               .bail()
               .trim()
               .run(req);
           } else if (this.urls.includes(key)) {
-            await check(key)
+            await body(key)
               .exists({ checkFalsy: true })
+              .withMessage("debe ser una URL válida")
               .bail()
               .trim()
               .isURL({ require_protocol: true, allow_fragments: false })
+              .withMessage("debe ser una URL válida")
               .bail()
               .run(req);
           } else if (this.integers.includes(key)) {
-            await check(key).trim().isInt({ min: 0 }).toInt().run(req);
+            await body(key)
+              .trim()
+              .isInt({ min: 0 })
+              .withMessage("debe ser un entero positivo")
+              .toInt()
+              .run(req);
           }
         } else {
-          delete props[key];
+          delete props[key]; // Las propiedades con valor "undefined" son eliminadas del objeto, porque de lo contrario se actualizarían los valores a undefined.
         }
       }
 
@@ -159,6 +175,7 @@ class ProductsController {
 
 const productsController = new ProductsController(
   productos,
-  ATRProductos
+  DataTypesProductos
 );
+
 export default productsController;
