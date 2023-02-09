@@ -9,7 +9,15 @@ _Proyecto de una aplicación de e-commerce._
 * Ejecutar `npm install` para instalar todas las dependencias.
 * Ejecutar con:  `npm run dev`
 
-_El servidor correrá en el puerto 8080 (ruta base: **http://localhost:8080/api**)_
+_El servidor correrá por defecto en el puerto 8080 (ruta base: **http://localhost:8080/api**)_
+
+* Para modificar el puerto se podrá editar la variable de entorno `PORT`
+* Desde la línea de comandos: `PORT=[puerto] npm run dev`
+
+_Por defecto la persistencia se realizará en memoria_
+
+* Se podrá establecer la base de datos a utilizar editando la variable de entorno `DB`
+* Desde la línea de comandos: `DB=[db] (ej: DB="mongoDB") npm run dev`
 
 ### Pre-requisitos 📋
 
@@ -28,12 +36,6 @@ ______
 <br>
 
 ## Uso 🔧
-
-_**Selección de origen de datos**_
-
-_Se deberá establecer el valor de la variable de entorno en el archivo .env de acuerdo a la base de datos a utilizar._
-
-### Endpoints
 
 | Métodos HTTP | Endpoints | Acción |
 | --- | --- | --- |
