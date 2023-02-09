@@ -17,7 +17,8 @@ _El servidor correrá por defecto en el puerto 8080 (ruta base: **http://localho
 _Por defecto la persistencia se realizará en memoria_
 
 * Se podrá establecer la base de datos a utilizar editando la variable de entorno `DB`
-* Desde la línea de comandos: `DB=[db] (ej: DB="mongoDB") npm run dev`
+* Desde la línea de comandos: `DB=[db] npm run dev` 
+    * Ej: `DB="mongoDB" npm run dev`
 
 ### Pre-requisitos 📋
 
@@ -68,6 +69,7 @@ _Las siguientes herramientas se utilizaron para crear este proyecto:_
 - [express](https://expressjs.com/) - Infraestructura de aplicaciones web.
 - [mongoDB](https://www.mongodb.com/) - Base de datos local.
 - [Firestore](https://firebase.google.com/products/firestore) - Base de datos en la nube.
+- [express-validator](https://express-validator.github.io/) - Validación de datos en express.
 
 ## Próximos pasos 🔩
 
