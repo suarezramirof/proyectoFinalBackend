@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
-import { MONGOPORT, MONGODB } from "../config.js";
+import { MongoAtlasUri } from "../config.js";
 
-mongoose.connect(MONGOPORT + MONGODB, {
-  useNewUrlParser: true,
-});
+try {
+  mongoose.connect(
+    MongoAtlasUri,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+    () => console.log("Mongoose is connected")
+  );
+} catch (error) {
+  console.log("Could not connect. Error: " + error);
+}
 
 class ContenedorMongo {
   constructor(type, schema) {
