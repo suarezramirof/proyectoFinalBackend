@@ -4,7 +4,7 @@ import { carritoRouter } from "./rutasCarritos.js";
 import { productosRouter } from "./rutasProductos.js";
 
 const router = Router();
-router.use("/", loginRouter);
+router.use("/user", loginRouter);
 router.use("/api/productos", checkAuthenticated, productosRouter);
 router.use("/api/carrito", checkAuthenticated, carritoRouter);
 
