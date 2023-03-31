@@ -4,3 +4,5 @@
 data/
 /src/engines
 /uploads
+/public/views
+/public/js
