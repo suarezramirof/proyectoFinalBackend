@@ -22,9 +22,9 @@ const upload = multer({
   storage: storage,
 });
 
-loginRouter.get("/register", checkNotAuthenticated, (_req, res) => {
-  res.render("pages/register");
-});
+// loginRouter.get("/register", checkNotAuthenticated, (_req, res) => {
+//   res.render("pages/register");
+// });
 
 loginRouter.post(
   "/register",
@@ -57,9 +57,9 @@ loginRouter.post(
   }
 );
 
-loginRouter.get("/registerfailure", checkNotAuthenticated, (_req, res) => {
-  res.render("pages/registerfailure");
-});
+// loginRouter.get("/registerfailure", checkNotAuthenticated, (_req, res) => {
+//   res.render("pages/registerfailure");
+// });
 
 loginRouter.get("/login", (req, res) => {
   if (req.isAuthenticated()) {
