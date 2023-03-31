@@ -1,6 +1,6 @@
-/public
-index.html
 /node_modules
 /data/ecommerce-d09f4-firebase-adminsdk-78exg-9b039216fb.json
 .env
 data/
+/src/engines
+/uploads
