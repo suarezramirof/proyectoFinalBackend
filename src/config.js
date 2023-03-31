@@ -25,12 +25,12 @@ const commandLineArgs = process.argv.slice(2);
 
 export const { PORT, MODE } = parseArgs(commandLineArgs, options);
 
-export const FBServiceAccount = JSON.parse(
-  fs.readFileSync(
-    "./data/ecommerce-d09f4-firebase-adminsdk-78exg-9b039216fb.json",
-    "utf-8"
-  )
-);
+// export const FBServiceAccount = JSON.parse(
+//   fs.readFileSync(
+//     "./data/ecommerce-d09f4-firebase-adminsdk-78exg-9b039216fb.json",
+//     "utf-8"
+//   )
+// );
 
 export const DB = process.env.DB || "memory";
 
