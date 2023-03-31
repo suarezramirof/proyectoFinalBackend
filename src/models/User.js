@@ -10,6 +10,7 @@ const userSchema = new Schema({
     phone: String,
     photo: String,
   },
+  cart: {type: String},
 });
 
 const User = model("User", userSchema);

@@ -15,12 +15,19 @@ class CarritosDaoMongo extends ContenedorMongo {
     return "El carrito está vacío";
   }
 
-  async addCartItem(id, prod) {
+  async addCartItem(id, prod, qty = 1) {
     const carrito = await this.get(id);
     if (!carrito.productos) {
       carrito.productos = [];
     }
-    carrito.productos.push(prod);
+    const index = carrito.productos.map((item) => item._id.toString()).indexOf(prod._id.toString());
+    if (index >= 0) {
+      carrito.productos[index].qty = carrito.productos[index].qty + parseInt(qty);
+    } else {
+      const tempProd = prod._doc;
+      tempProd.qty = parseInt(qty);
+      await carrito.productos.push(tempProd);
+    }
     await this.items.updateOne(
       { _id: id },
       { $set: { productos: carrito.productos } }
@@ -30,7 +37,9 @@ class CarritosDaoMongo extends ContenedorMongo {
   async deleteCartItem(cartId, prodId) {
     const carrito = await this.get(cartId);
     if (carrito.productos.find((item) => item._id == prodId)) {
-      carrito.productos = carrito.productos.filter((item) => item._id != prodId);
+      carrito.productos = carrito.productos.filter(
+        (item) => item._id != prodId
+      );
       await this.updateId(cartId, carrito);
     } else {
       const error = new Error("Producto no encontrado");
