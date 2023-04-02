@@ -1,6 +1,7 @@
 import { carritos, productos } from "../daos/index.js";
 import User from "../models/User.js";
-
+import transporter, { orderMail } from "../misc/nodeMailer.js";
+import client, { message, whatsAppMessage } from "../misc/twilio.js";
 class CarritoController {
   constructor(carritos, productos) {
     this.carritos = carritos;
@@ -52,7 +53,7 @@ class CarritoController {
 
   addItem = (req, res) => {
     const { cartId, prodId } = req.params;
-    const {qty} = req.query;
+    const { qty } = req.query;
     this.productos
       .get(prodId)
       .then((producto) => this.carritos.addCartItem(cartId, producto, qty))
@@ -78,6 +79,33 @@ class CarritoController {
           .status(error.code ? error.code : 500)
           .json({ error: error.message });
       });
+  };
+
+  orderCart = async (req, res) => {
+    try {
+      const { cartId, userId } = req.params;
+      const user = await User.findById(userId);
+      const { email } = user;
+      const { name } = user.userData;
+      this.carritos.getItems(cartId).then(async (items) => {
+        orderMail.html = JSON.stringify(items);
+        orderMail.subject = `Nuevo pedido de ${name} / ${email}`;
+        transporter.sendMail(orderMail);
+        res.json({ message: "Cart items ordered" });
+        try {
+          message.body = `Pedido con número ${cartId} en proceso.`;
+          whatsAppMessage.body = `Nuevo pedido de ${name} / ${email}`;
+          await client.messages.create(message).then((msg) => console.log(msg));
+          await client.messages
+            .create(whatsAppMessage)
+            .then((msg) => console.log(msg));
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    } catch (err) {
+      res.json({ error: err });
+    }
   };
 }
 

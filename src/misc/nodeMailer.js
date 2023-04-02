@@ -19,4 +19,11 @@ export const registerMail = {
     html: ""
 }
 
+export const orderMail = {
+    from: "Servidor Node.js",
+    to: mail,
+    subject: "Nuevo pedido de ",
+    html: []
+}
+
 export default transporter;

@@ -24,7 +24,7 @@ const upload = multer({
 
 // loginRouter.get("/register", checkNotAuthenticated, (_req, res) => {
 //   res.render("pages/register");
-// });
+// });  
 
 loginRouter.post(
   "/register",
@@ -100,6 +100,7 @@ loginRouter.get("/logout", checkAuthenticated, async (req, res, next) => {
     const { name } = req.user.userData;
     req.logOut((err) => {
       if (err) return next(err);
+      req.session.destroy();
       res.json({ mensaje: `Hasta luego ${name}` });
     });
   } catch (error) {
@@ -109,8 +110,8 @@ loginRouter.get("/logout", checkAuthenticated, async (req, res, next) => {
 
 loginRouter.get("/userdata", checkAuthenticated, async (req, res) => {
   try {
-    const { email, userData, cart } = req.user;
-    res.json({ email, userData, cart });
+    const { email, userData, cart, _id } = req.user;
+    res.json({ email, userData, cart, id: _id });
   } catch (err) {
     res.json({ error: err });
   }
