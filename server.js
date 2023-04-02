@@ -1,5 +1,7 @@
 // Imports
-import { PORT, DB } from "./src/config.js";
+import { PORT, MODE, DB } from "./src/config.js";
+import cluster from "cluster";
+import os from "os";
 import express from "express";
 import router from "./src/routes/index.js";
 import cors from "cors";
@@ -10,36 +12,50 @@ import initialize from "./src/auth/passport-config.js";
 
 // Express
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
+if (MODE === "CLUSTER" && cluster.isPrimary) {
+  const numCpus = os.cpus().length;
+  console.log("Primary cluster server");
 
-app.use(cors());
-app.use(cookieParser());
-app.use(sessionMiddleware);
-app.use(passport.initialize());
-app.use(passport.session());
-initialize(passport);
+  for (let i = 0; i < numCpus; i++) {
+    cluster.fork();
+  }
 
-// Servidor
+  cluster.on("exit", (worker) => {
+    console.log(`Worker ${process.pid} died`);
+    cluster.fork();
+  });
+} else {
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.use(express.static("public"));
+  app.use("/uploads", express.static("uploads"));
 
-const server = app.listen(PORT, () => {
-  console.log(
-    `Servidor escuchando en el puerto ${
-      server.address().port
-    }. Base de datos: ${DB}.`
-  );
-});
-server.on("error", (error) => {
-  console.log(`Error en el servidor: ${error}`);
-});
+  app.use(cors());
+  app.use(cookieParser());
+  app.use(sessionMiddleware);
+  app.use(passport.initialize());
+  app.use(passport.session());
+  initialize(passport);
 
-// Router
+  // Servidor
 
-app.use("/", router);
+  const server = app.listen(PORT, () => {
+    console.log(
+      `Servidor escuchando en el puerto ${
+        server.address().port
+      }. Base de datos: ${DB}.`
+    );
+  });
+  server.on("error", (error) => {
+    console.log(`Error en el servidor: ${error}`);
+  });
 
-app.get("*", (_req, res) => {
-  res.sendFile("/index.html", { root: "./public" });
-});
+  // Router
+
+  app.use("/", router);
+
+  app.get("*", (_req, res) => {
+    res.sendFile("/index.html", { root: "./public" });
+  });
+}
