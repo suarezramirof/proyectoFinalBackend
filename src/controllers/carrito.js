@@ -13,6 +13,7 @@ class CarritoController {
       .add()
       .then(async (id) => {
         await User.findOneAndUpdate({ _id: req.user.id }, { cart: id });
+        req.session.counter++;
         return res.json({
           successMessage: `Carrito con id ${id} creado`,
           cartId: id,
@@ -39,6 +40,7 @@ class CarritoController {
 
   getItemsByCartId = (req, res) => {
     const id = req.params.id;
+    req.session.counter++;
     this.carritos
       .getItems(id)
       .then((items) => {
@@ -54,6 +56,7 @@ class CarritoController {
   addItem = (req, res) => {
     const { cartId, prodId } = req.params;
     const { qty } = req.query;
+    req.session.counter++;
     this.productos
       .get(prodId)
       .then((producto) => this.carritos.addCartItem(cartId, producto, qty))

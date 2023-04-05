@@ -12,7 +12,8 @@ class ProductsController {
     this.integers = integers;
   }
 
-  getProducts = (_req, res) => {
+  getProducts = (req, res) => {
+    req.session.counter++;
     this.productos
       .getAll()
       .then((data) => res.json(data))
