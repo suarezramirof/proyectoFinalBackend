@@ -6,7 +6,7 @@ const loginRouter = Router();
 import User from "../models/User.js";
 import registerMiddleware from "../auth/registerMiddleware.js";
 import { createHash } from "../auth/bCrypt.js";
-import transporter, {registerMail} from "../misc/nodeMailer.js";
+import transporter, { registerMail } from "../misc/nodeMailer.js";
 
 import multer from "multer";
 const storage = multer.diskStorage({
@@ -24,7 +24,7 @@ const upload = multer({
 
 // loginRouter.get("/register", checkNotAuthenticated, (_req, res) => {
 //   res.render("pages/register");
-// });  
+// });
 
 loginRouter.post(
   "/register",
@@ -57,10 +57,6 @@ loginRouter.post(
   }
 );
 
-// loginRouter.get("/registerfailure", checkNotAuthenticated, (_req, res) => {
-//   res.render("pages/registerfailure");
-// });
-
 loginRouter.get("/login", (req, res) => {
   if (req.isAuthenticated()) {
     res.send({ logged: true });
@@ -79,6 +75,7 @@ loginRouter.post("/login", checkNotAuthenticated, (req, res, next) => {
       if (err) {
         return next(err);
       }
+      req.session.counter = 1;
       return res.json({ user: req.user });
     });
   })(req, res, next);
@@ -114,6 +111,17 @@ loginRouter.get("/userdata", checkAuthenticated, async (req, res) => {
     res.json({ email, userData, cart, id: _id });
   } catch (err) {
     res.json({ error: err });
+  }
+});
+
+loginRouter.delete("/cart/:id", checkAuthenticated, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await User.findByIdAndUpdate(id, { cart: "" })
+      .then(() => console.log("User cart deleted succesfully"))
+      .catch((err) => console.log(err));
+  } catch (err) {
+    console.log(err);
   }
 });
 
