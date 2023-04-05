@@ -9,10 +9,7 @@ class CarritosDaoMongo extends ContenedorMongo {
   async getItems(id) {
     const carrito = await this.get(id);
     const items = carrito.productos;
-    if (items) {
-      if (items.length > 0) return items;
-    }
-    return "El carrito está vacío";
+    return items;
   }
 
   async addCartItem(id, prod, qty = 1) {
@@ -20,9 +17,12 @@ class CarritosDaoMongo extends ContenedorMongo {
     if (!carrito.productos) {
       carrito.productos = [];
     }
-    const index = carrito.productos.map((item) => item._id.toString()).indexOf(prod._id.toString());
+    const index = carrito.productos
+      .map((item) => item._id.toString())
+      .indexOf(prod._id.toString());
     if (index >= 0) {
-      carrito.productos[index].qty = carrito.productos[index].qty + parseInt(qty);
+      carrito.productos[index].qty =
+        carrito.productos[index].qty + parseInt(qty);
     } else {
       const tempProd = prod._doc;
       tempProd.qty = parseInt(qty);
