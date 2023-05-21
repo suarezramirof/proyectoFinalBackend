@@ -1,12 +1,8 @@
 import twilio from "twilio";
-import {config} from 'dotenv'
-config();
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
-const clientNumber = process.env.FAKE_CLIENT_NUMBER;
-const twilioWhatsAppNumber = process.env.TWILIO_WHATSAPP_NUMBER;
-const clientWhatsAppNumber = process.env.FAKE_CLIENT_WHATSAPP_NUMBER;
+import { twilio as twilioConfig  } from "../config.js";
+
+// Twilio Credentials
+const {accountSid, authToken, clientNumber, clientWhatsAppNumber, twilioNumber, twilioWhatsAppNumber} = twilioConfig;
 
 const client = twilio(accountSid, authToken);
 
