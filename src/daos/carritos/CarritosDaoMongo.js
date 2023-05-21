@@ -1,6 +1,6 @@
 import { CARRITOS_SCHEMA } from "../../models/carritos.js";
 import ContenedorMongo from "../../container/ContenedorMongo.js";
-
+import logger from "../../misc/logger.js";
 class CarritosDaoMongo extends ContenedorMongo {
   constructor() {
     super("carritos", CARRITOS_SCHEMA);
@@ -28,10 +28,16 @@ class CarritosDaoMongo extends ContenedorMongo {
       tempProd.qty = parseInt(qty);
       await carrito.productos.push(tempProd);
     }
-    await this.items.updateOne(
-      { _id: id },
-      { $set: { productos: carrito.productos } }
-    );
+    await this.items
+      .updateOne({ _id: id }, { $set: { productos: carrito.productos } })
+      .then(() => {
+        logger.info(`Item with id: ${prod._id} added to cart with id: ${id}`);
+      })
+      .catch((err) =>
+        logger.error(
+          `Error adding item with id: ${prod._id} to cart with id: ${id}: ${err}`
+        )
+      );
   }
 
   async deleteCartItem(cartId, prodId) {
@@ -40,7 +46,17 @@ class CarritosDaoMongo extends ContenedorMongo {
       carrito.productos = carrito.productos.filter(
         (item) => item._id != prodId
       );
-      await this.updateId(cartId, carrito);
+      await this.updateId(cartId, carrito)
+        .then(() =>
+          logger.info(
+            `Item with id: ${prodId} removed from cart with id: ${cartId}`
+          )
+        )
+        .catch((error) =>
+          logger.error(
+            `Error removing item with id: ${prodId} from cart with id: ${cartId}. Error: ${error}`
+          )
+        );
     } else {
       const error = new Error("Producto no encontrado");
       error.code = 404;

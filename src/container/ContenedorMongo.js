@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MongoAtlasUri } from "../config.js";
-
+import logger from "../misc/logger.js";
 try {
   mongoose.connect(
     MongoAtlasUri,
@@ -8,10 +8,10 @@ try {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
-    () => console.log("Mongoose is connected")
+    () => logger.info("Mongoose is connected")
   );
 } catch (error) {
-  console.log("Could not connect. Error: " + error);
+  logger.fatal("Could not connect to mongoDB. Error: ", error);
 }
 
 class ContenedorMongo {

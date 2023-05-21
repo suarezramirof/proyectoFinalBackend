@@ -1,6 +1,7 @@
 import { Strategy as LocalStrategy } from "passport-local";
-import { isValidPassword, createHash } from "./bCrypt.js";
+import { isValidPassword } from "./bCrypt.js";
 import User from "../models/User.js";
+import logger from "../misc/logger.js";
 
 function initialize(passport) {
   passport.use("login", login);
@@ -15,19 +16,19 @@ function initialize(passport) {
 const authenticateLogin = async (username, password, done) => {
   User.findOne({ email: username }, (err, user) => {
     if (err) {
-      console.log("Login error: " + err);
+      logger.error("Login error: " + err);
       return done(err);
     }
     if (!user) {
-      console.log("User not found");
+      logger.warn("User not found for ", username);
       return done(null, false);
     }
     isValidPassword(user, password).then((res) => {
       if (res) {
-        console.log("Successful login");
+        logger.info(username, " successful login");
         return done(null, user);
       } else {
-        console.log("Wrong password");
+        logger.warn("Wrong password for user ", username);
         return done(null, false);
       }
     });

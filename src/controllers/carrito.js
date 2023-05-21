@@ -2,6 +2,7 @@ import { carritos, productos } from "../daos/index.js";
 import User from "../models/User.js";
 import transporter, { orderMail } from "../misc/nodeMailer.js";
 import client, { message, whatsAppMessage } from "../misc/twilio.js";
+import logger from "../misc/logger.js";
 class CarritoController {
   constructor(carritos, productos) {
     this.carritos = carritos;
@@ -14,12 +15,14 @@ class CarritoController {
       .then(async (id) => {
         await User.findOneAndUpdate({ _id: req.user.id }, { cart: id });
         req.session.counter++;
+        logger.info(`Cart with id: ${id} created`);
         return res.json({
           successMessage: `Carrito con id ${id} creado`,
           cartId: id,
         });
       })
       .catch((error) => {
+        logger.error("Error adding cart: ", error.message);
         res
           .status(error.code ? error.code : 500)
           .json({ error: error.message });
@@ -30,8 +33,12 @@ class CarritoController {
     const id = req.params.id;
     this.carritos
       .delete(id)
-      .then(() => res.json({ successMessage: "Carrito eliminado con éxito" }))
+      .then(() => {
+        logger.info(`Cart with id: ${id} deleted`);
+        res.json({ successMessage: "Cart deleted succesfully" });
+      })
       .catch((error) => {
+        logger.error("Error deleting cart: ", error.message);
         res
           .status(error.code ? error.code : 500)
           .json({ error: error.message });
@@ -47,6 +54,7 @@ class CarritoController {
         res.json(items);
       })
       .catch((error) => {
+        logger.error("Error getting items from cart: ", error.message);
         res
           .status(error.code ? error.code : 500)
           .json({ error: error.message });
@@ -60,9 +68,10 @@ class CarritoController {
     this.productos
       .get(prodId)
       .then((producto) => this.carritos.addCartItem(cartId, producto, qty))
-      .then(() =>
-        res.json({ successMessage: "Producto agregado al carrito con éxito" })
-      )
+      .then(() => {
+        logger.info(`Item with id: ${prodId} added to cart with id: ${cartId}`);
+        res.json({ successMessage: "Item added to cart succesfully" });
+      })
       .catch((error) => {
         res
           .status(error.code ? error.code : 500)

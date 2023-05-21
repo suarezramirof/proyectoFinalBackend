@@ -7,8 +7,9 @@ import User from "../models/User.js";
 import registerMiddleware from "../auth/registerMiddleware.js";
 import { createHash } from "../auth/bCrypt.js";
 import transporter, { registerMail } from "../misc/nodeMailer.js";
-
 import multer from "multer";
+import logger from "../misc/logger.js";
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
@@ -95,8 +96,10 @@ loginRouter.get("/loginfailure", checkNotAuthenticated, (_req, res) => {
 loginRouter.get("/logout", checkAuthenticated, async (req, res, next) => {
   try {
     const { name } = req.user.userData;
+    const { email } = req.user;
     req.logOut((err) => {
       if (err) return next(err);
+      logger.info(`User ${email} logged out`);
       req.session.destroy();
       res.json({ mensaje: `Hasta luego ${name}` });
     });
