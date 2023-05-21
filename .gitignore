@@ -1,6 +1,7 @@
 /node_modules
 /data/ecommerce-d09f4-firebase-adminsdk-78exg-9b039216fb.json
-.env
+development.env
+production.env
 data/
 /src/engines
 
