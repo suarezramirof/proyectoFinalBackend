@@ -1,7 +1,7 @@
 import { CARRITOS_SCHEMA } from "../../models/carritos.js";
-import ContenedorMongo from "../../container/ContenedorMongo.js";
+import DaoMongo from "../daoMongo.js";
 import logger from "../../misc/logger.js";
-class CarritosDaoMongo extends ContenedorMongo {
+class CarritosDaoMongo extends DaoMongo {
   constructor() {
     super("carritos", CARRITOS_SCHEMA);
   }

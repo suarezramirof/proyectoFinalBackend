@@ -9,10 +9,10 @@ if (DB == "fs") {
     (res) => res.default
   );
 } else if (DB == "mongoDB") {
-  Productos = await import("./productos/ProductosDaoMongo.js").then(
+  Productos = await import("./productos/productsDaoMongo.js").then(
     (res) => res.default
   );
-  Carritos = await import("./carritos/CarritosDaoMongo.js").then(
+  Carritos = await import("./carritos/cartsDaoMongo.js").then(
     (res) => res.default
   );
 } else if (DB == "firebase") {

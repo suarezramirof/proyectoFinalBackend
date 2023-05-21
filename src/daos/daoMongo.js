@@ -14,7 +14,7 @@ try {
   logger.fatal("Could not connect to mongoDB. Error: ", error);
 }
 
-class ContenedorMongo {
+class DaoMongo {
   constructor(type, schema) {
     this.items = mongoose.model(type, schema);
   }
@@ -46,4 +46,4 @@ class ContenedorMongo {
   }
 }
 
-export default ContenedorMongo;
+export default DaoMongo;
