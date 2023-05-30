@@ -9,8 +9,7 @@ const userSchema = new Schema({
     age: Number,
     phone: String,
     photo: String,
-  },
-  cart: {type: String},
+  }
 });
 
 const User = model("User", userSchema);
