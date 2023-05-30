@@ -3,12 +3,13 @@ import passport from "passport";
 import { config } from "dotenv";
 config();
 const loginRouter = Router();
-import User from "../models/User.js";
+import User from "../models/mongoose/User.js";
 import registerMiddleware from "../auth/registerMiddleware.js";
 import { createHash } from "../auth/bCrypt.js";
-import transporter, { registerMail } from "../misc/nodeMailer.js";
+import transporter, { registerMail } from "../utils/nodeMailer.js";
 import multer from "multer";
-import logger from "../misc/logger.js";
+import logger from "../utils/logger.js";
+import { AUTH } from "../config.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -23,9 +24,6 @@ const upload = multer({
   storage: storage,
 });
 
-// loginRouter.get("/register", checkNotAuthenticated, (_req, res) => {
-//   res.render("pages/register");
-// });
 
 loginRouter.post(
   "/register",
@@ -132,6 +130,9 @@ export function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
+    if (AUTH === "no") {
+      return next();
+    }
     res.redirect("/");
   }
 }

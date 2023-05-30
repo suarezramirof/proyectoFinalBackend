@@ -3,9 +3,9 @@ import carritoController from "../controllers/carrito.js";
 
 export const carritoRouter = express.Router();
 
-carritoRouter.post("/", carritoController.addCart);
-carritoRouter.post("/:cartId/pedido/:userId", carritoController.orderCart)
-carritoRouter.delete("/:id", carritoController.deleteCartById);
-carritoRouter.get("/:id", carritoController.getItemsByCartId);
-carritoRouter.post("/:cartId/productos/:prodId", carritoController.addItem);
-carritoRouter.delete("/:cartId/productos/:prodId", carritoController.deleteItem);
+carritoRouter.post("/:userId/pedido", carritoController.orderCart)
+carritoRouter.delete("/:userId", carritoController.deleteCartByUserId);
+carritoRouter.get("/:userId", carritoController.getItemsByUserId);
+carritoRouter.post("/:userId/productos/:prodId", carritoController.addItem);
+carritoRouter.put("/:userId/productos/:prodId", carritoController.updateItem);
+carritoRouter.delete("/:userId/productos/:prodId", carritoController.deleteItem);

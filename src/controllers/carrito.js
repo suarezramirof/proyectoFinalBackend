@@ -1,41 +1,20 @@
-import { carritos, productos } from "../daos/index.js";
-import User from "../models/User.js";
-import transporter, { orderMail } from "../misc/nodeMailer.js";
-import client, { message, whatsAppMessage } from "../misc/twilio.js";
-import logger from "../misc/logger.js";
+import CartsApi from "../api/cartsApi.js";
+import User from "../models/mongoose/User.js";
+import transporter, { orderMail } from "../utils/nodeMailer.js";
+import client, { message, whatsAppMessage } from "../utils/twilio.js";
+import logger from "../utils/logger.js";
 class CarritoController {
-  constructor(carritos, productos) {
-    this.carritos = carritos;
-    this.productos = productos;
+  constructor() {
+    this.carts = CartsApi.getInstance();
   }
 
-  addCart = (req, res) => {
-    return this.carritos
-      .add()
-      .then(async (id) => {
-        await User.findOneAndUpdate({ _id: req.user.id }, { cart: id });
-        req.session.counter++;
-        logger.info(`Cart with id: ${id} created`);
-        return res.json({
-          successMessage: `Carrito con id ${id} creado`,
-          cartId: id,
-        });
-      })
-      .catch((error) => {
-        logger.error("Error adding cart: ", error.message);
-        res
-          .status(error.code ? error.code : 500)
-          .json({ error: error.message });
-      });
-  };
-
-  deleteCartById = (req, res) => {
-    const id = req.params.id;
-    this.carritos
-      .delete(id)
-      .then(() => {
-        logger.info(`Cart with id: ${id} deleted`);
-        res.json({ successMessage: "Cart deleted succesfully" });
+  deleteCartByUserId = (req, res) => {
+    const userId = req.params.userId;
+    this.carts
+      .deleteCart(userId)
+      .then((deletedCart) => {
+        logger.info(`Cart with id: ${userId} deleted`);
+        res.json(deletedCart);
       })
       .catch((error) => {
         logger.error("Error deleting cart: ", error.message);
@@ -45,11 +24,11 @@ class CarritoController {
       });
   };
 
-  getItemsByCartId = (req, res) => {
-    const id = req.params.id;
+  getItemsByUserId = (req, res) => {
+    const id = req.params.userId;
     req.session.counter++;
-    this.carritos
-      .getItems(id)
+    return this.carts
+      .getProducts(id)
       .then((items) => {
         res.json(items);
       })
@@ -62,16 +41,29 @@ class CarritoController {
   };
 
   addItem = (req, res) => {
-    const { cartId, prodId } = req.params;
+    const { userId, prodId } = req.params;
     const { qty } = req.query;
     req.session.counter++;
-    this.productos
-      .get(prodId)
-      .then((producto) => this.carritos.addCartItem(cartId, producto, qty))
-      .then(() => {
-        logger.info(`Item with id: ${prodId} added to cart with id: ${cartId}`);
-        res.json({ successMessage: "Item added to cart succesfully" });
+
+    this.carts
+      .addProduct(userId, prodId, qty)
+      .then((addedProduct) => {
+        res.json(addedProduct);
       })
+      .catch((error) => {
+        logger.error("Error adding product to cart: ", error.message);
+        res
+          .status(error.code ? error.code : 500)
+          .json({ error: error.message });
+      });
+  };
+
+  updateItem = (req, res) => {
+    const { userId, prodId } = req.params;
+    const { qty } = req.query;
+    this.carts
+      .updateItem(userId, prodId, qty)
+      .then((updatedProduct) => res.json(updatedProduct))
       .catch((error) => {
         res
           .status(error.code ? error.code : 500)
@@ -80,12 +72,10 @@ class CarritoController {
   };
 
   deleteItem = (req, res) => {
-    const { cartId, prodId } = req.params;
-    this.carritos
-      .deleteCartItem(cartId, prodId)
-      .then(() =>
-        res.json({ successMessage: "Producto eliminado del carrito con éxito" })
-      )
+    const { userId, prodId } = req.params;
+    this.carts
+      .deleteCartItem(userId, prodId)
+      .then((data) => res.json(data))
       .catch((error) => {
         res
           .status(error.code ? error.code : 500)
@@ -95,32 +85,45 @@ class CarritoController {
 
   orderCart = async (req, res) => {
     try {
-      const { cartId, userId } = req.params;
+      const { userId } = req.params;
       const user = await User.findById(userId);
       const { email } = user;
       const { name } = user.userData;
-      this.carritos.getItems(cartId).then(async (items) => {
-        orderMail.html = JSON.stringify(items);
-        orderMail.subject = `Nuevo pedido de ${name} / ${email}`;
-        transporter.sendMail(orderMail);
-        res.json({ message: "Cart items ordered" });
-        try {
-          message.body = `Pedido con número ${cartId} en proceso.`;
-          whatsAppMessage.body = `Nuevo pedido de ${name} / ${email}`;
-          await client.messages.create(message).then((msg) => console.log(msg));
-          await client.messages
-            .create(whatsAppMessage)
-            .then((msg) => console.log(msg));
-        } catch (err) {
-          console.log(err);
-        }
-      });
+      const cartId = await this.carts.getCartId(userId);
+      const items = await this.carts.getProducts(userId);
+
+      orderMail.html = JSON.stringify(items);
+      orderMail.subject = `Nuevo pedido de ${name} / ${email}`;
+      transporter.sendMail(orderMail);
+      res.json({ message: "Cart items ordered" });
+      logger.info("Cart items ordered");
+      try {
+        message.body = `Pedido con número ${cartId} en proceso.`;
+        whatsAppMessage.body = `Nuevo pedido de ${name} / ${email}`;
+        await client.messages
+          .create(message)
+          .then((msg) =>
+            logger.info(
+              `Text message sent: \n body: ${msg.body}\n to: ${msg.to}\n from: ${msg.from}`
+            )
+          );
+        await client.messages
+          .create(whatsAppMessage)
+          .then((msg) =>
+            logger.info(
+              `WhatsApp message sent: \n body: ${msg.body}\n to: ${msg.to}\n from: ${msg.from}`
+            )
+          );
+      } catch (err) {
+        logger.error("Error sending message: " + err.message);
+      }
     } catch (err) {
-      res.json({ error: err });
+      logger.error("Error ordering cart: " + err.message);
+      res.status(500).json({ error: "Error ordering cart" + err.message });
     }
   };
 }
 
-const carritoController = new CarritoController(carritos, productos);
+const carritoController = new CarritoController();
 
 export default carritoController;

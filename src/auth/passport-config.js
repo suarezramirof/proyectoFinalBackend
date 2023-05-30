@@ -1,7 +1,7 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import { isValidPassword } from "./bCrypt.js";
-import User from "../models/User.js";
-import logger from "../misc/logger.js";
+import User from "../models/mongoose/User.js";
+import logger from "../utils/logger.js";
 
 function initialize(passport) {
   passport.use("login", login);

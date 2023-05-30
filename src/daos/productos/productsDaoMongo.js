@@ -1,10 +1,19 @@
 import DaoMongo from "../daoMongo.js";
-import { PRODUCTOS_SCHEMA } from "../../models/productos.js";
+import Product from "../../models/mongoose/productos.js";
 
-class ProductosDaoMongo extends DaoMongo {
+let instance = null;
+
+class ProductsDaoMongo extends DaoMongo {
   constructor() {
-    super("productos", PRODUCTOS_SCHEMA);
+    super(Product);
+  }
+
+  static getInstance() {
+    if (!instance) {
+      instance = new ProductsDaoMongo();
+    }
+    return instance;
   }
 }
 
-export default ProductosDaoMongo;
+export default ProductsDaoMongo;

@@ -1,35 +1,38 @@
 import { DB } from "../config.js";
-let Productos;
-let Carritos;
-if (DB == "fs") {
-  Productos = await import("./productos/ProductosDaoArchivos.js").then(
-    (res) => res.default
-  );
-  Carritos = await import("./carritos/CarritosDaoArchivos.js").then(
-    (res) => res.default
-  );
-} else if (DB == "mongoDB") {
-  Productos = await import("./productos/productsDaoMongo.js").then(
-    (res) => res.default
-  );
-  Carritos = await import("./carritos/cartsDaoMongo.js").then(
-    (res) => res.default
-  );
-} else if (DB == "firebase") {
-  Productos = await import("./productos/ProductosDaoFirebase.js").then(
-    (res) => res.default
-  );
-  Carritos = await import("./carritos/CarritosDaoFirebase.js").then(
-    (res) => res.default
-  );
-} else {
-  Productos = await import("./productos/ProductosDaoMemoria.js").then(
-    (res) => res.default
-  );
-  Carritos = await import("./carritos/CarritosDaoMemoria.js").then(
-    (res) => res.default
-  );
-}
 
-export const productos = new Productos();
-export const carritos = new Carritos();
+let productsInstance = null;
+let cartsInstance = null;
+let daoFactory = null;
+
+export default class DaoFactory {
+  constructor(db) {
+    if (db == "mongoDB") {
+      this.productsDao = import("./productos/productsDaoMongo.js").then((res) =>
+        res.default.getInstance()
+      );
+      this.cartsDao = import("./carritos/cartsDaoMongo.js").then((res) =>
+        res.default.getInstance()
+      );
+    }
+  }
+
+  static async getProductsDao() {
+    if (productsInstance == null) {
+      if (daoFactory == null) {
+        daoFactory = new DaoFactory(DB);
+      }
+      productsInstance = await daoFactory.productsDao;
+    }
+    return productsInstance;
+  }
+
+  static async getCartsDao() {
+    if (!cartsInstance) {
+      if (!daoFactory) {
+        daoFactory = new DaoFactory(DB);
+      }
+      cartsInstance = await daoFactory.cartsDao;
+    }
+    return cartsInstance;
+  }
+}

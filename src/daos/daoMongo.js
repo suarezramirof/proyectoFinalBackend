@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MongoAtlasUri } from "../config.js";
-import logger from "../misc/logger.js";
+import logger from "../utils/logger.js";
 try {
   mongoose.connect(
     MongoAtlasUri,
@@ -15,34 +15,53 @@ try {
 }
 
 class DaoMongo {
-  constructor(type, schema) {
-    this.items = mongoose.model(type, schema);
+  constructor(model) {
+    this.items = model;
   }
 
-  async getAll() {
-    const items = this.items.find({});
-    return items;
-  }
+  getAll = async () => {
+    try {
+      return await this.items.find({});
+    } catch (error) {
+      error.code = 500;
+      error.message += ` -- at ${this.constructor.name}`;
+      throw error;
+    }
+  };
 
-  async get(id) {
-    const [item] = await this.items.find({ _id: id });
-    return item;
-  }
+  getById = async (id) => {
+    try {
+      const item = await this.items.findById(id);
+      if (!item) {
+        const error = new Error(`Item with id: ${id} not found`);
+        error.code = 404;
+        throw error;
+      }
+      return item;
+    } catch (error) {
+      error.message = error.message.replace(
+        "Cast to ObjectId failed",
+        "Invalid ID"
+      );
+      error.message += ` -- at ${this.constructor.name}`;
+      throw error;
+    }
+  };
 
-  async add(item) {
-    const promise = this.items.create(item);
-    return await promise.then((elem) => {
-      this.updateId(elem._id, { timestamp: elem._id.getTimestamp() });
-      return elem._id;
-    });
-  }
+  add = async (item) => {
+    try {
+      return this.items.create(item);
+    } catch (error) {
+      error.message += ` -- at ${this.constructor.name}`;
+      throw error;
+    }
+  };
 
-  async updateId(id, item) {
-    return await this.items.updateOne({ _id: id }, { $set: item });
-  }
+  updateById = async (id, item) =>
+    this.items.findByIdAndUpdate(id, item, { new: true });
 
   async delete(id) {
-    return await this.items.deleteOne({ _id: id });
+    return await this.items.findByIdAndDelete(id);
   }
 }
 

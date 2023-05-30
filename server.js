@@ -4,6 +4,7 @@ import cluster from "cluster";
 import os from "os";
 import express from "express";
 import router from "./src/routes/index.js";
+import { NODE_ENV } from "./src/config.js";
 import cors from "cors";
 import sessionMiddleware from "./src/auth/session.js";
 import cookieParser from "cookie-parser";
@@ -30,8 +31,8 @@ if (MODE === "CLUSTER" && cluster.isPrimary) {
   app.use(express.json());
   app.use(express.static("public"));
   app.use("/uploads", express.static("uploads"));
-
-  app.use(cors());
+  if (NODE_ENV === "development") 
+  app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
   app.use(cookieParser());
   app.use(sessionMiddleware);
   app.use(passport.initialize());

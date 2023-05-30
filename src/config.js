@@ -8,9 +8,9 @@ import parseArgs from "minimist";
 
 const USER = process.env.USER_NAME;
 const PASSWORD = process.env.PASSWORD;
-
-export const MONGOPORT = "mongodb://127.0.0.1:27017/";
-export const MONGODB = "ecommerce";
+export const NODE_ENV = process.env.NODE_ENV;
+// export const MONGOPORT = "mongodb://127.0.0.1:27017/";
+const MONGODB = process.env.MONGODB;
 export const MongoAtlasUri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.zuesfin.mongodb.net/${MONGODB}`;
 export const SessionTimeOut = 600000;
 const options = {
@@ -18,17 +18,19 @@ const options = {
     p: "PORT",
     m: "MODE",
     d: "DB",
+    a: "AUTH"
   },
   default: {
     PORT: process.env.PORT || 8080,
     MODE: "FORK",
     DB: process.env.DB || "mongoDB",
+    AUTH: "yes",
   },
 };
 
 const commandLineArgs = process.argv.slice(2);
 
-export const { PORT, MODE, DB } = parseArgs(commandLineArgs, options);
+export const { PORT, MODE, DB, AUTH } = parseArgs(commandLineArgs, options);
 
 export const FBServiceAccount = JSON.parse(
   fs.readFileSync(
@@ -39,7 +41,9 @@ export const FBServiceAccount = JSON.parse(
 
 // Login
 
-export const admin = true;
+export const apiKey = process.env.API_KEY || "AIzaSyD5HVY2w1-0X8Xr8V5-JhkQ6X7_wgR_5i8";
+
+export const keyMode = process.env.NODE_ENV === "production" ? true : false;
 
 export const twilio = {
   accountSid: process.env.TWILIO_ACCOUNT_SID,
