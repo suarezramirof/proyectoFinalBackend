@@ -36,21 +36,25 @@ loginRouter.post(
       address: req.body.address,
       age: req.body.age,
       phone: req.body.phone,
-      photo: req.file.path,
+      photo: req.file ? req.file.path : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     };
     const newUser = new User({
       email: req.body.username,
       password: createHash(req.body.password),
-      userData: userData,
-      cart: "",
+      userData: userData
     });
     User.create(newUser, (err, userWithId) => {
       if (err) {
-        console.log("Error when saving user: " + err);
-        return res.json(err);
+        logger.error("Error when saving user: " + err.message);
+        return res.json({error: err.message});
       }
-      registerMail.html = JSON.stringify(userWithId);
-      transporter.sendMail(registerMail);
+      logger.info(`User ${userWithId.email} created`);
+      try {
+        registerMail.html = JSON.stringify(userWithId);
+        transporter.sendMail(registerMail);
+      } catch(error) {
+        logger.error("Error sending mail: " + error.message);
+      }
       return res.redirect("/");
     });
   }
