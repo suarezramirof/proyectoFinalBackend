@@ -60,6 +60,7 @@ ______
 | POST | /api/carrito/:userId/productos/idProducto?qty={cantidad} | Agregar un producto al carrito, cantidad = 1 por defecto
 | DELETE | /api/carrito/:userId | Eliminar un carrito
 | DELETE | /api/carrito/:userId/productos/:idProducto | Eliminar un producto del carrito
+| POST | /api/carrito/:userId/pedido | Realizar una orden del carrito
 
 ### Ver endpoints con _Postman_ ⚙️
 
