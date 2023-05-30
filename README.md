@@ -49,6 +49,7 @@ ______
 | --- | --- | --- |
 | POST | /user/register | Registrar un nuevo usuario
 | POST | /user/login | Iniciar sesión
+| GET | /user/userdata | Obtener datos del usuario activo
 | GET | /user/logout | Cerrar sesión
 | GET | /api/productos | Obtener todos los productos
 | GET | /api/productos/:id | Obtener datos de un producto
