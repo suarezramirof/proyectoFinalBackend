@@ -8,9 +8,9 @@ import parseArgs from "minimist";
 
 const USER = process.env.USER_NAME;
 const PASSWORD = process.env.PASSWORD;
-export const NODE_ENV = process.env.NODE_ENV;
-// export const MONGOPORT = "mongodb://127.0.0.1:27017/";
-const MONGODB = process.env.MONGODB;
+export const NODE_ENV = process.env.NODE_ENV || "development";
+
+const MONGODB = process.env.MONGODB || "ecommerce";
 export const MongoAtlasUri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.zuesfin.mongodb.net/${MONGODB}`;
 export const SessionTimeOut = 600000;
 const options = {
@@ -41,7 +41,7 @@ export const FBServiceAccount = JSON.parse(
 
 // Login
 
-export const apiKey = process.env.API_KEY || "AIzaSyD5HVY2w1-0X8Xr8V5-JhkQ6X7_wgR_5i8";
+export const apiKey = process.env.API_KEY || "";
 
 export const keyMode = process.env.NODE_ENV === "production" ? true : false;
 
