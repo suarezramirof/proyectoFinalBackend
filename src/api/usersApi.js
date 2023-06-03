@@ -1,5 +1,6 @@
 import DaoFactory from "../daos/index.js";
 import { createHash } from "../auth/bCrypt.js";
+import User from "../models/classes/usersClass.js";
 
 let instance = null;
 export default class UsersApi {
@@ -20,7 +21,7 @@ export default class UsersApi {
   async getUser(username) {
     const user = await this.getByUsername(username);
     if (user) {
-      return { username: user.email, userData: user.userData };
+      return new User(user);
     }
     return null;
   }
@@ -28,7 +29,7 @@ export default class UsersApi {
   async getUserById(id) {
     try {
       const user = await this.dao.getById(id);
-      return user;
+      return new User(user);
     } catch (error) {
       error.message += ` -- at ${this.constructor.name}`;
       throw error;
@@ -42,7 +43,8 @@ export default class UsersApi {
       password: hash,
       userData,
     });
-    return { email: newUser.email, userData: newUser.userData };
+    const user = new User(newUser);
+    return user;
   }
 
   static getInstance() {
