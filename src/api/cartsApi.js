@@ -8,7 +8,7 @@ export default class CartsApi {
     DaoFactory.getCartsDao().then((dao) => {this.dao = dao})
   }
 
-  async addProduct(userId, productId, qty) {
+  async addProduct(userId, productId, qty = 1) {
     const prods = await this.dao.getItems(userId);
     if (!prods) {
       await this.dao.addCart(userId);
