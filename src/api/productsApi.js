@@ -6,7 +6,7 @@ import ProductsDto from "../models/dtos/productsDto.js";
 
 export default class ProductsApi {
   constructor() {
-    DaoFactory.getProductsDao().then((res) => this.dao = res);
+    DaoFactory.getProductsDao().then((res) => (this.dao = res));
   }
   async getAll() {
     try {
@@ -43,7 +43,10 @@ export default class ProductsApi {
   async update(id, product) {
     const data = ProductsApi.isValidProduct(product, false);
     const dto = new ProductsDto(data);
-    return await this.dao.updateById(id, dto);
+    const updatedProductProps = Object.fromEntries(
+      Object.entries(dto).filter(([_key, value]) => value !== undefined)
+    );
+    return await this.dao.updateById(id, updatedProductProps);
   }
 
   async delete(id) {
