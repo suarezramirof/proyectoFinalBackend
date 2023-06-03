@@ -1,6 +1,7 @@
 import UsersApi from "../api/usersApi.js";
 import logger from "../utils/logger.js";
 import passport from "passport";
+import transporter, { registerMail } from "../utils/nodeMailer.js";
 
 class LoginController {
   constructor() {
@@ -23,6 +24,8 @@ class LoginController {
       userData
     );
     if (newUser) {
+      registerMail.html = JSON.stringify(newUser);
+      transporter.sendMail(registerMail);   
       logger.info("New user registered");
       res.status(200).json(newUser);
     } else {
@@ -58,6 +61,31 @@ class LoginController {
       message,
     });
   }
+
+  getUserData = async (req, res) => {
+    try {
+      const { username, userData, _id } = req.session.passport.user;
+      res.json({ email: username, userData, id: _id });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  logout = async (req, res, next) => {
+    try {
+      const { name } = req.session.passport.user.userData;
+      const { username } = req.session.passport.user;
+      req.logOut((err) => {
+        if (err) return next(err);
+        logger.info(`User ${username} logged out`);
+        req.session.destroy();
+        res.json({ message: `Goodbye ${name}!` });
+      });
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ error: error.message });
+    }
+  };
 }
 
 const loginController = new LoginController();
