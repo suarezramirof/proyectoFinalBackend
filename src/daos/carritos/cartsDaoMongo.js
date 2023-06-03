@@ -30,7 +30,7 @@ class CartsDaoMongo extends DaoMongo {
     return newCart;
   }
 
-  async addCartItem(id, prod, qty = 1) {
+  async addCartItem(id, prod, qty) {
     const carrito = await this.items.findOne({ userId: id });
     const index = carrito.productos
       .map((item) => item._id.toString())
