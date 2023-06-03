@@ -13,6 +13,13 @@ export default class DaoFactory {
       this.cartsDao = import("./carritos/cartsDaoMongo.js").then((res) =>
         res.default.getInstance()
       );
+    } else if (db == "fs") {
+      this.productsDao = import("./productos/productsDaoFS.js").then((res) =>
+        res.default.getInstance()
+      );
+      this.cartsDao = import("./carritos/cartsDaoFS.js").then((res) =>
+        res.default.getInstance()
+      );
     }
   }
 
