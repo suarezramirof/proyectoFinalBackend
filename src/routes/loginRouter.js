@@ -3,13 +3,14 @@ import passport from "passport";
 import { config } from "dotenv";
 config();
 const loginRouter = Router();
-import User from "../models/mongoose/User.js";
+
 import registerMiddleware from "../auth/registerMiddleware.js";
 import { createHash } from "../auth/bCrypt.js";
 import transporter, { registerMail } from "../utils/nodeMailer.js";
 import multer from "multer";
 import logger from "../utils/logger.js";
 import { AUTH } from "../config.js";
+import loginController from "../controllers/login.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -24,40 +25,12 @@ const upload = multer({
   storage: storage,
 });
 
-
 loginRouter.post(
   "/register",
   checkNotAuthenticated,
   upload.single("file"),
   registerMiddleware,
-  (req, res) => {
-    const userData = {
-      name: req.body.name,
-      address: req.body.address,
-      age: req.body.age,
-      phone: req.body.phone,
-      photo: req.file ? req.file.path : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    };
-    const newUser = new User({
-      email: req.body.username,
-      password: createHash(req.body.password),
-      userData: userData
-    });
-    User.create(newUser, (err, userWithId) => {
-      if (err) {
-        logger.error("Error when saving user: " + err.message);
-        return res.json({error: err.message});
-      }
-      logger.info(`User ${userWithId.email} created`);
-      try {
-        registerMail.html = JSON.stringify(userWithId);
-        transporter.sendMail(registerMail);
-      } catch(error) {
-        logger.error("Error sending mail: " + error.message);
-      }
-      return res.redirect("/");
-    });
-  }
+  loginController.registerUser
 );
 
 loginRouter.get("/login", (req, res) => {
@@ -68,28 +41,7 @@ loginRouter.get("/login", (req, res) => {
   }
 });
 
-loginRouter.post("/login", checkNotAuthenticated, (req, res, next) => {
-  passport.authenticate("login", (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) return handleAuthFailure(req, res);
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      req.session.counter = 1;
-      return res.json({ user: req.user });
-    });
-  })(req, res, next);
-});
-
-function handleAuthFailure(req, res) {
-  return res.status(401).json({
-    success: false,
-    message: "Invalid username or password",
-  });
-}
+loginRouter.post("/login", checkNotAuthenticated, loginController.logUser);
 
 loginRouter.get("/loginfailure", checkNotAuthenticated, (_req, res) => {
   res.json({ logged: false });
@@ -97,11 +49,11 @@ loginRouter.get("/loginfailure", checkNotAuthenticated, (_req, res) => {
 
 loginRouter.get("/logout", checkAuthenticated, async (req, res, next) => {
   try {
-    const { name } = req.user.userData;
-    const { email } = req.user;
+    const { name } = req.session.passport.user.userData;
+    const { username } = req.session.passport.user;
     req.logOut((err) => {
       if (err) return next(err);
-      logger.info(`User ${email} logged out`);
+      logger.info(`User ${username} logged out`);
       req.session.destroy();
       res.json({ mensaje: `Hasta luego ${name}` });
     });
@@ -112,7 +64,7 @@ loginRouter.get("/logout", checkAuthenticated, async (req, res, next) => {
 
 loginRouter.get("/userdata", checkAuthenticated, async (req, res) => {
   try {
-    const { email, userData, cart, _id } = req.user;
+    const { email, userData, cart, _id } = req.session.passport.user;
     res.json({ email, userData, cart, id: _id });
   } catch (err) {
     res.json({ error: err });
@@ -137,13 +89,17 @@ export function checkAuthenticated(req, res, next) {
     if (AUTH === "no") {
       return next();
     }
-    res.redirect("/");
+    res.status(401).json({
+      error: "Unauthorized",
+      message: "You need to login to access this resource",
+      logged: false,
+    });
   }
 }
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    res.redirect("/");
+    res.json({ logged: true });
   } else {
     next();
   }
